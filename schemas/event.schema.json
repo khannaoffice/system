@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:event",
+  "title": "Event",
+  "description": "SPEC 22.4. The canonical event envelope. Append-only. payload never holds the arguments of an operation, only a digest and their names (SPEC 18.5).",
+  "type": "object",
+  "required": [
+    "eventId",
+    "type",
+    "occurredAt",
+    "actorId",
+    "resourceIds",
+    "payload",
+    "schemaVersion"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z]+(\\.[a-z_]+)+$"
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "operationId": {
+      "type": "string"
+    },
+    "resourceIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "causationId": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "arguments": false
+      },
+      "description": "A digest and the names of the arguments, never the arguments (SPEC 18.5)."
+    },
+    "schemaVersion": {
+      "const": "0.1.0"
+    }
+  }
+}

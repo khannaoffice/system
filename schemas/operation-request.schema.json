@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:operation-request",
+  "title": "Operation request",
+  "description": "SPEC 22.2. The canonical request. Phase 1 carries reads only, so no idempotency key or authority context is required yet.",
+  "type": "object",
+  "required": ["requestId", "capability", "version", "arguments"],
+  "additionalProperties": false,
+  "properties": {
+    "requestId": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "pattern": "^ko_[a-z_]+$" },
+    "version": { "type": "integer", "minimum": 1 },
+    "arguments": { "type": "object" },
+    "actor": { "type": "string" },
+    "expectedRevisions": { "type": "object", "additionalProperties": { "type": "string" } },
+    "idempotencyKey": { "type": "string" }
+  }
+}

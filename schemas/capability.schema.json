@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:capability",
+  "title": "Capability",
+  "description": "SPEC 15. A declared operation: stable id and version, effect, scopes, confirmation, idempotency, cancellation, audit, input schema and the errors it can return.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "name",
+    "description",
+    "effect",
+    "scopes",
+    "confirmation",
+    "idempotent",
+    "cancellable",
+    "audit",
+    "inputSchema",
+    "errors",
+    "implemented"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ko_[a-z_]+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "enum": [
+        "read",
+        "ephemeral",
+        "persistent_reversible",
+        "persistent_limited",
+        "irreversible",
+        "non_public",
+        "consequential"
+      ]
+    },
+    "scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "confirmation": {
+      "enum": [
+        "none",
+        "required"
+      ]
+    },
+    "idempotent": {
+      "type": "boolean"
+    },
+    "cancellable": {
+      "type": "boolean"
+    },
+    "audit": {
+      "enum": [
+        "none",
+        "required"
+      ]
+    },
+    "inputSchema": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "implemented": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{ "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "urn:khannaoffice:system:v1:schema:participant", "title": "Participant", "description": "SPEC 4.6. An entity that can receive information or perform operations. An agent is always distinguishable from the person it acts for.",
+  "type": "object", "required": ["id", "kind"], "additionalProperties": false,
+  "properties": { "id": { "type": "string", "minLength": 1 }, "kind": { "enum": ["human", "agent", "service"] } } }

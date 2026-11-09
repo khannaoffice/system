@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:annotation",
+  "title": "Annotation",
+  "description": "SPEC 13. The System's own record of an annotation; it exports as a W3C Web Annotation (annotation.ts). origin says whether a person, an agent or a process wrote it.",
+  "type": "object",
+  "required": [
+    "id",
+    "objectId",
+    "revisionId",
+    "body",
+    "author",
+    "principal",
+    "origin",
+    "visibility",
+    "createdAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "enum": [
+        "person",
+        "agent",
+        "process"
+      ]
+    },
+    "visibility": {
+      "const": "private"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

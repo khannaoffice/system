@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:relation",
+  "title": "Relation",
+  "description": "SPEC 4.3. A typed, directed association between two objects.",
+  "type": "object",
+  "required": ["type", "from", "to", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "type": { "enum": ["partOf", "contains", "follows", "precedes", "references", "derivedFrom", "relatedTo", "depicts", "locatedAt", "supports", "contradicts", "revisionOf"] },
+    "from": { "type": "string", "minLength": 1 },
+    "to": { "type": "string", "minLength": 1 },
+    "provenance": { "$ref": "urn:khannaoffice:system:v1:schema:provenance" },
+    "via": { "type": "string" }
+  }
+}

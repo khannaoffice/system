@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:claim",
+  "title": "Claim",
+  "description": "SPEC 4.8. A statement that may be supported, contested or qualified.",
+  "type": "object",
+  "required": ["id", "statement", "subject", "revisionId", "author"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "statement": { "type": "string", "minLength": 1 },
+    "subject": { "type": "string", "minLength": 1 },
+    "revisionId": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "author": { "$ref": "urn:khannaoffice:system:v1:schema:provenance" }
+  }
+}

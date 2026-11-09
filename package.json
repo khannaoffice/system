@@ -1,0 +1,81 @@
+{
+  "name": "@khannaoffice/system",
+  "version": "0.1.0",
+  "description": "The KhannaOffice System: specification, schemas, reference packages and conformance suite.",
+  "license": "UNLICENSED",
+  "author": "KhannaOffice",
+  "type": "module",
+  "exports": {
+    "./core/*": {
+      "types": "./dist/core/src/*.d.ts",
+      "default": "./dist/core/src/*.js"
+    },
+    "./state/*": {
+      "types": "./dist/state/src/*.d.ts",
+      "default": "./dist/state/src/*.js"
+    },
+    "./adapters/mcp": {
+      "types": "./dist/adapters/mcp/src/mcp.d.ts",
+      "default": "./dist/adapters/mcp/src/mcp.js"
+    },
+    "./adapters/webmcp": {
+      "types": "./dist/adapters/webmcp/src/webmcp.d.ts",
+      "default": "./dist/adapters/webmcp/src/webmcp.js"
+    },
+    "./adapters/git": {
+      "types": "./dist/adapters/git/src/git.d.ts",
+      "default": "./dist/adapters/git/src/git.js"
+    },
+    "./adapters/git/render": {
+      "types": "./dist/adapters/git/src/render.d.ts",
+      "default": "./dist/adapters/git/src/render.js"
+    },
+    "./schemas/*": "./schemas/*"
+  },
+  "files": [
+    "dist",
+    "schemas"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khannaoffice/system.git"
+  },
+  "homepage": "https://github.com/khannaoffice/system#readme",
+  "bugs": {
+    "url": "https://github.com/khannaoffice/system/issues"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "registry": "node scripts/registry.mjs",
+    "test": "node --test tests/conformance/*.test.mjs packages/core/test/*.test.ts packages/state/test/*.test.ts packages/adapters/mcp/test/*.test.ts packages/adapters/webmcp/test/*.test.ts packages/adapters/git/test/*.test.ts",
+    "test:browser": "node --test tests/conformance/browser.test.mjs",
+    "test:protocols": "node --test tests/conformance/parity-protocols.test.mjs",
+    "test:bench": "node --test tests/conformance/test-bench.test.mjs",
+    "test:parity": "node --test tests/conformance/parity-ledger.test.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@types/node": "^22",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "fake-indexeddb": "^6.2.7",
+    "typescript": "5.7.3"
+  },
+  "keywords": [
+    "khannaoffice",
+    "information-systems",
+    "agents",
+    "mcp",
+    "webmcp",
+    "local-first",
+    "specification",
+    "conformance"
+  ]
+}

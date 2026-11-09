@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:representation",
+  "title": "Representation",
+  "description": "SPEC 4.2. One expression of an object.",
+  "type": "object",
+  "required": ["id", "objectId", "role", "mediaType", "href", "availability"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "objectId": { "type": "string", "minLength": 1 },
+    "role": { "enum": ["page", "record", "media"] },
+    "mediaType": { "type": "string", "pattern": "^[a-z]+/[a-z0-9.+-]+$" },
+    "href": { "type": "string", "minLength": 1 },
+    "availability": { "enum": ["available", "unavailable"] },
+    "language": { "type": "string" },
+    "integrity": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

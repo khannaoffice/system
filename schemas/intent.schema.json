@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:intent",
+  "title": "Intent",
+  "description": "Amendment 0001, 31. A participant's evidence that they are heading for a target, before they have chosen it. Certainty is a reading from 0 to 1, not a probability (31.2).",
+  "type": "object",
+  "required": [
+    "target",
+    "certainty"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "certainty": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

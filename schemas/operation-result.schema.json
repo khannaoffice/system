@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:operation-result",
+  "title": "Operation result",
+  "description": "SPEC 22.3. Phase 1 reads end in ok or failed; the remaining statuses arrive with writes and are reserved here.",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["status", "data"],
+      "additionalProperties": false,
+      "properties": { "status": { "enum": ["ok", "cancelled"] }, "data": {} }
+    },
+    {
+      "type": "object",
+      "required": ["status", "error"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["failed", "denied", "conflict", "unknown", "needs_approval"] },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "additionalProperties": false,
+          "properties": {
+            "code": { "enum": ["not_found", "withdrawn", "revision_not_found", "invalid_query", "invalid_cursor", "invalid_arguments", "unsupported_capability", "unsupported_version", "approval_required", "approval_invalid", "not_permitted", "stale_revision", "idempotency_conflict", "too_late", "invalid_state", "unverified"] },
+            "message": { "type": "string", "minLength": 1 },
+            "details": { "type": "object" }
+          }
+        }
+      }
+    }
+  ]
+}

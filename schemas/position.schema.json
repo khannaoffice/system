@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:position",
+  "title": "Position",
+  "description": "SPEC 8.1. Where a participant is on a surface. Not every surface needs every field.",
+  "type": "object",
+  "required": [
+    "surfaceId"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "surfaceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objectId": {
+      "type": "string"
+    },
+    "revisionId": {
+      "type": "string"
+    },
+    "anchor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "axis": {
+      "enum": [
+        "block",
+        "inline",
+        "time",
+        "x",
+        "y"
+      ]
+    },
+    "offset": {
+      "type": "number"
+    },
+    "nearby": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection": {
+      "type": "object",
+      "required": [
+        "anchor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "anchor": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "end": {
+          "type": "number"
+        }
+      }
+    },
+    "viewState": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    "capturedAt": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:warrant",
+  "title": "Warrant",
+  "description": "SPEC 4.8. What a claim rests on. additionalProperties is false on purpose: there is no confidence, probability or score field, because no calibrated method exists to produce one and a number would be read as one.",
+  "type": "object",
+  "required": ["claimId", "sources", "method", "author", "revisionId", "limitations", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "claimId": { "type": "string", "minLength": 1 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["objectId", "revisionId", "relation"],
+        "additionalProperties": false,
+        "properties": {
+          "objectId": { "type": "string", "minLength": 1 },
+          "revisionId": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+          "anchor": { "type": "string", "minLength": 1 },
+          "relation": { "enum": ["supports", "contradicts"] }
+        }
+      }
+    },
+    "method": { "type": "string", "minLength": 1 },
+    "author": { "$ref": "urn:khannaoffice:system:v1:schema:provenance" },
+    "revisionId": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["supported", "contested", "incomplete", "unverified"] }
+  }
+}

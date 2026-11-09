@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:move-set",
+  "title": "Move set",
+  "description": "Amendment 0001, 33.2. The minimal set of changes between two states of a surface, computed from identities (SPEC 4.1): rows that arrived, rows that left, rows that moved (with their distance in places) and rows whose value changed. Rows that stayed are not in it.",
+  "type": "object",
+  "required": [
+    "changes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "changes": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "title": "insert",
+            "type": "object",
+            "required": ["kind", "id", "to"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "const": "insert" },
+              "id": { "type": "string", "minLength": 1 },
+              "to": { "type": "integer", "minimum": 0 },
+              "value": {}
+            }
+          },
+          {
+            "title": "remove",
+            "type": "object",
+            "required": ["kind", "id", "from"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "const": "remove" },
+              "id": { "type": "string", "minLength": 1 },
+              "from": { "type": "integer", "minimum": 0 },
+              "value": {}
+            }
+          },
+          {
+            "title": "move",
+            "type": "object",
+            "required": ["kind", "id", "from", "to", "distance"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "const": "move" },
+              "id": { "type": "string", "minLength": 1 },
+              "from": { "type": "integer", "minimum": 0 },
+              "to": { "type": "integer", "minimum": 0 },
+              "distance": { "description": "Places moved, counted among the rows that were in both states.", "type": "integer", "minimum": 1 }
+            }
+          },
+          {
+            "title": "change",
+            "type": "object",
+            "required": ["kind", "id"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "const": "change" },
+              "id": { "type": "string", "minLength": 1 },
+              "before": {},
+              "after": {}
+            }
+          }
+        ]
+      }
+    }
+  }
+}

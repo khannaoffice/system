@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:provenance",
+  "title": "Provenance",
+  "description": "SPEC 4.1, 4.3. How a record came to be. Authored, derived and inferred records are always distinguishable.",
+  "type": "object",
+  "required": ["method", "recordedBy"],
+  "additionalProperties": false,
+  "properties": {
+    "method": { "enum": ["authored", "derived", "inferred"] },
+    "recordedBy": { "type": "string", "minLength": 1 },
+    "source": { "type": "string" }
+  }
+}

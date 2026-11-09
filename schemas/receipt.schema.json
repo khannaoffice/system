@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:receipt",
+  "title": "Receipt",
+  "description": "SPEC 4.9. The recorded outcome of an operation. Unsigned: SPEC 22.5 forbids calling an unsigned record cryptographically verified.",
+  "type": "object",
+  "required": [
+    "id",
+    "operationId",
+    "capability",
+    "version",
+    "actor",
+    "principal",
+    "authorization",
+    "before",
+    "after",
+    "outcome",
+    "at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capability": {
+      "type": "string",
+      "pattern": "^ko_[a-z_]+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization": {
+      "type": "object",
+      "required": [
+        "decision"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "const": "allow"
+        },
+        "grant": {
+          "type": "string"
+        }
+      }
+    },
+    "approval": {
+      "type": "string"
+    },
+    "before": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "after": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "outcome": {
+      "const": "committed"
+    },
+    "at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "output": {}
+  }
+}

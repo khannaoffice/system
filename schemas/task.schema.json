@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:task",
+  "title": "Task",
+  "description": "SPEC 16.2. The unit a person hands to an agent.",
+  "type": "object",
+  "required": [
+    "id",
+    "principal",
+    "actor",
+    "goal",
+    "state",
+    "operations",
+    "createdAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "created",
+        "discovering",
+        "proposing",
+        "awaiting_approval",
+        "executing",
+        "verifying",
+        "completed",
+        "paused",
+        "blocked",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "resumeTo": {
+      "enum": [
+        "created",
+        "discovering",
+        "proposing",
+        "awaiting_approval",
+        "executing",
+        "verifying"
+      ]
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pending": {
+      "type": "string"
+    },
+    "blockedBy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

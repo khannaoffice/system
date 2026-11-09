@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:collection",
+  "title": "Collection",
+  "description": "SPEC 4.4. An identifiable set of object references with an explicit order key.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "kind", "title", "visibility", "orderKey", "members", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "id": { "type": "string", "pattern": "^ko-[a-z0-9]{10,}$" },
+    "kind": { "enum": ["thread", "gathered", "published"] },
+    "title": { "type": "string", "minLength": 1 },
+    "visibility": { "enum": ["public", "unlisted", "private"] },
+    "orderKey": { "const": "position" },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["objectId", "position"],
+        "additionalProperties": false,
+        "properties": { "objectId": { "type": "string", "minLength": 1 }, "position": { "type": "integer", "minimum": 0 }, "basis": { "enum": ["authored", "evidenced", "inferred"] } }
+      }
+    },
+    "rationale": { "type": "string" },
+    "provenance": { "$ref": "urn:khannaoffice:system:v1:schema:provenance" }
+  }
+}

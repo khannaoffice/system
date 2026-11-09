@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khannaoffice:system:v1:schema:label",
+  "title": "Label",
+  "description": "Amendment 0001, 34.2. The label of a published object: a medium line, then paragraphs. Fixed structure; one label serves the page, the machine-readable record and the printed catalogue.",
+  "type": "object",
+  "required": [
+    "medium",
+    "paragraphs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "medium": {
+      "description": "One line, with no line break and no space at either end.",
+      "type": "string",
+      "pattern": "^\\S(?:[^\\r\\n]*\\S)?$"
+    },
+    "paragraphs": {
+      "description": "At least one. Each is text without a blank line inside it and without a space at either end.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^(?!\\s)(?![\\s\\S]*\\s$)(?![\\s\\S]*\\n\\s*\\n)[\\s\\S]+$"
+      }
+    }
+  }
+}

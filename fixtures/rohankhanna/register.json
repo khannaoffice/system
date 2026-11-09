@@ -1,0 +1,3581 @@
+{
+  "scope": "rohankhanna.com",
+  "objects": [
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-4qxy3rfv6a",
+      "type": "System",
+      "title": "Register",
+      "date": "2026-11-05",
+      "summary": "One list, read by people and by machines.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/register/",
+      "revisionId": "sha256:1afb9fe106ee5364de92d6bbcf9f5c8e05f6008c605aabb5ddb1fbd029d2ee98",
+      "sequence": 0,
+      "representations": [
+        {
+          "id": "ko-4qxy3rfv6a:page",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/register/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-4qxy3rfv6a:record",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-4qxy3rfv6a",
+          "availability": "available"
+        },
+        {
+          "id": "ko-4qxy3rfv6a:media:0",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/register.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nh6wjztr2f",
+      "type": "System",
+      "title": "Threads",
+      "date": "2026-11-05",
+      "summary": "Connections an author made, never ones a machine guessed.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/threads/",
+      "revisionId": "sha256:916ecdcfaa0441d0e16b2ae58ec4c6025741a7d38bb1676b09c56302267a45cd",
+      "sequence": 1,
+      "representations": [
+        {
+          "id": "ko-nh6wjztr2f:page",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/threads/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nh6wjztr2f:record",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nh6wjztr2f",
+          "availability": "available"
+        },
+        {
+          "id": "ko-nh6wjztr2f:media:0",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/threads.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-sf38kg2fy5",
+      "type": "System",
+      "title": "Index",
+      "date": "2026-11-05",
+      "summary": "A list that filters without losing its place.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/index/",
+      "revisionId": "sha256:50a7c98acfa4908c7fa170c9443c203062222a541ef963f35941bd15a0be4ab3",
+      "sequence": 2,
+      "representations": [
+        {
+          "id": "ko-sf38kg2fy5:page",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/index/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-sf38kg2fy5:record",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-sf38kg2fy5",
+          "availability": "available"
+        },
+        {
+          "id": "ko-sf38kg2fy5:media:0",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/index.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-5djg8427a9",
+      "type": "System",
+      "title": "Approach",
+      "date": "2026-10-26",
+      "summary": "Which link the pointer is going for, and how surely.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/approach/",
+      "revisionId": "sha256:7fbee2c9bbbdb062a2664f3b5ca481537a78e7d5ab4885415d5bd3b4d3f3dc9d",
+      "sequence": 3,
+      "representations": [
+        {
+          "id": "ko-5djg8427a9:page",
+          "objectId": "ko-5djg8427a9",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/approach/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-5djg8427a9:record",
+          "objectId": "ko-5djg8427a9",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-5djg8427a9",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5djg8427a9:media:0",
+          "objectId": "ko-5djg8427a9",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/approach.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-p459z8xqc7",
+      "type": "System",
+      "title": "Whereabouts",
+      "date": "2026-10-26",
+      "summary": "Pages as places along one surface.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/whereabouts/",
+      "revisionId": "sha256:7beb4a3950f65c73e0fa21b21bb7bd87a15540ac5f2e32cb7a6f042a67c00447",
+      "sequence": 4,
+      "representations": [
+        {
+          "id": "ko-p459z8xqc7:page",
+          "objectId": "ko-p459z8xqc7",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/whereabouts/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-p459z8xqc7:record",
+          "objectId": "ko-p459z8xqc7",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-p459z8xqc7",
+          "availability": "available"
+        },
+        {
+          "id": "ko-p459z8xqc7:media:0",
+          "objectId": "ko-p459z8xqc7",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/whereabouts.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-mpy8kryr9n",
+      "type": "Project",
+      "title": "unigrid.app",
+      "date": "2026-10-24",
+      "summary": "Compose a Unigrid B6 sheet in the browser, and print it at full size.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/unigrid-app/",
+      "revisionId": "sha256:ba2eb2fae9d8ad4793b35f199cbb3e33ee677eee5b04c5323bf6e1a9e3c06ef9",
+      "sequence": 5,
+      "representations": [
+        {
+          "id": "ko-mpy8kryr9n:page",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/unigrid-app/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-mpy8kryr9n:record",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-mpy8kryr9n",
+          "availability": "available"
+        },
+        {
+          "id": "ko-mpy8kryr9n:media:0",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/unigrid-app/choose-a-space.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-7spgmswzv6",
+      "type": "System",
+      "title": "Layers",
+      "date": "2026-10-26",
+      "summary": "The drawings a piece was made from, laid over it: look to see them, press to keep them.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/layers/",
+      "revisionId": "sha256:162bf4b5d4925d3545050d7c60c8d32ee4375a303f4af6c0b84817c9287d02b9",
+      "sequence": 6,
+      "representations": [
+        {
+          "id": "ko-7spgmswzv6:page",
+          "objectId": "ko-7spgmswzv6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/layers/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-7spgmswzv6:record",
+          "objectId": "ko-7spgmswzv6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-7spgmswzv6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-7spgmswzv6:media:0",
+          "objectId": "ko-7spgmswzv6",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/layers.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-bf6ng9wpqg",
+      "type": "Project",
+      "title": "KhannaOffice",
+      "date": "2026-08-12",
+      "summary": "The studio’s public record: products, research and releases.",
+      "visibility": "public",
+      "canonicalUri": "https://khannaoffice.com/",
+      "revisionId": "sha256:71b07f504cff9af6889516b74ca436246d1573f5f18c0f5171c0a4ecb8deb253",
+      "sequence": 7,
+      "representations": [
+        {
+          "id": "ko-bf6ng9wpqg:page",
+          "objectId": "ko-bf6ng9wpqg",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://khannaoffice.com/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-bf6ng9wpqg:record",
+          "objectId": "ko-bf6ng9wpqg",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-bf6ng9wpqg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ptghkmcqb7",
+      "type": "Project",
+      "title": "Blink",
+      "date": "2026-02-11",
+      "summary": "Blink’s website, for people and the AI agents shopping for them.",
+      "visibility": "public",
+      "canonicalUri": "https://thankyoublink.com/",
+      "revisionId": "sha256:49da8f6ffa67616cb05f8bf648f3160f4b08ea840d970f1890d7776e0160e1ea",
+      "sequence": 8,
+      "representations": [
+        {
+          "id": "ko-ptghkmcqb7:page",
+          "objectId": "ko-ptghkmcqb7",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://thankyoublink.com/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ptghkmcqb7:record",
+          "objectId": "ko-ptghkmcqb7",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ptghkmcqb7",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ffhvk6k4d8",
+      "type": "System",
+      "title": "Unigrid",
+      "date": "2026-08-12",
+      "summary": "A layout system for React, set on the module of the National Park Service publications.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/unigrid/",
+      "revisionId": "sha256:a68879f9816c4afcaa769bb8c63052c617cb836240f95792920aaf1677590666",
+      "sequence": 9,
+      "representations": [
+        {
+          "id": "ko-ffhvk6k4d8:page",
+          "objectId": "ko-ffhvk6k4d8",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/unigrid/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ffhvk6k4d8:record",
+          "objectId": "ko-ffhvk6k4d8",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ffhvk6k4d8",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-s2bazqtptk",
+      "type": "Identity",
+      "title": "Blink mascot, alive",
+      "date": "2026-10-21",
+      "summary": "It rolls its eyes, and now and then it blinks.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-mascot-alive/",
+      "revisionId": "sha256:c28a2452d81e11c61e83ea330d2a99f8f7e192aadfc3df318072588af57917ed",
+      "sequence": 10,
+      "representations": [
+        {
+          "id": "ko-s2bazqtptk:page",
+          "objectId": "ko-s2bazqtptk",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-mascot-alive/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-s2bazqtptk:record",
+          "objectId": "ko-s2bazqtptk",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-s2bazqtptk",
+          "availability": "available"
+        },
+        {
+          "id": "ko-s2bazqtptk:media:0",
+          "objectId": "ko-s2bazqtptk",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/blink-mascot/mascot.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-apfcpr8p49",
+      "type": "Writing",
+      "title": "Blink: Evidence-Bound Policy Authorization for Agentic Commerce",
+      "date": "2026-09-15",
+      "summary": "With Hadrien Padilla and Noah Edmunds.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-paper/",
+      "revisionId": "sha256:379d253aa94a50da4f2bd2e5bf42e58f8d69387543462d7d81d0c12fae9d68fa",
+      "sequence": 11,
+      "representations": [
+        {
+          "id": "ko-apfcpr8p49:page",
+          "objectId": "ko-apfcpr8p49",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-paper/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-apfcpr8p49:record",
+          "objectId": "ko-apfcpr8p49",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-apfcpr8p49",
+          "availability": "available"
+        },
+        {
+          "id": "ko-apfcpr8p49:media:0",
+          "objectId": "ko-apfcpr8p49",
+          "role": "media",
+          "mediaType": "application/pdf",
+          "href": "/works/blink-paper/blink-evidence-bound-policy-authorization.pdf",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-2thb326tz6",
+      "type": "Identity",
+      "title": "CustomKern logo",
+      "date": "2026-09-20",
+      "summary": "The wordmark comes loose, and settles.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/customkern-logo/",
+      "revisionId": "sha256:5364707db8c8a307c9be8fda1b4833654d67de33690d9f5508313a29572997c3",
+      "sequence": 12,
+      "representations": [
+        {
+          "id": "ko-2thb326tz6:page",
+          "objectId": "ko-2thb326tz6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/customkern-logo/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-2thb326tz6:record",
+          "objectId": "ko-2thb326tz6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-2thb326tz6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-2thb326tz6:media:0",
+          "objectId": "ko-2thb326tz6",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/customkern-logo/customkern.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-w325thdahv",
+      "type": "Video",
+      "title": "KhannaOffice orbit",
+      "date": "2026-08-13",
+      "summary": "The greeting: K, a sweep, O, KhannaOffice.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/khannaoffice-orbit/",
+      "revisionId": "sha256:19255278aa895135eedf9fbec9d70e22eaf713494da84c1ca748452838628fa9",
+      "sequence": 13,
+      "representations": [
+        {
+          "id": "ko-w325thdahv:page",
+          "objectId": "ko-w325thdahv",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/khannaoffice-orbit/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-w325thdahv:record",
+          "objectId": "ko-w325thdahv",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-w325thdahv",
+          "availability": "available"
+        },
+        {
+          "id": "ko-w325thdahv:media:0",
+          "objectId": "ko-w325thdahv",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/khannaoffice-orbit/orbit.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-fd8np3x3kz",
+      "type": "Identity",
+      "title": "Blink mascot",
+      "date": "2026-07-22",
+      "summary": "Two half-lidded eyes, in Blink Blue.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-mascot/",
+      "revisionId": "sha256:277a39363ed5a917448e056b870c6d586c9a241d492e20834c0dcc09ddfb78b9",
+      "sequence": 14,
+      "representations": [
+        {
+          "id": "ko-fd8np3x3kz:page",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-mascot/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-fd8np3x3kz:record",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-fd8np3x3kz",
+          "availability": "available"
+        },
+        {
+          "id": "ko-fd8np3x3kz:media:0",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/blink-mascot/mascot.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-dckpz73axw",
+      "type": "Identity",
+      "title": "KhannaOffice logo",
+      "date": "2026-01-05",
+      "summary": "The wordmark.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/khannaoffice-logo/",
+      "revisionId": "sha256:86d626c389dc7edb3b9fd6dc1a4fa2e69f628717d6bf57a0cc7b2d9873e65937",
+      "sequence": 15,
+      "representations": [
+        {
+          "id": "ko-dckpz73axw:page",
+          "objectId": "ko-dckpz73axw",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/khannaoffice-logo/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-dckpz73axw:record",
+          "objectId": "ko-dckpz73axw",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-dckpz73axw",
+          "availability": "available"
+        },
+        {
+          "id": "ko-dckpz73axw:media:0",
+          "objectId": "ko-dckpz73axw",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/khannaoffice-logo/logo.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-d38cghxwqf",
+      "type": "Project",
+      "title": "Ethics & Tech",
+      "date": "2026-01-12",
+      "summary": "A platform for ethics and technology, begun as roundtables at McGill.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/ethics-and-tech/",
+      "revisionId": "sha256:2038f479ef86f17bdfbc1a799d3cf38dc2dc20fbd6cec7dafaa4b83b11e88526",
+      "sequence": 16,
+      "representations": [
+        {
+          "id": "ko-d38cghxwqf:page",
+          "objectId": "ko-d38cghxwqf",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/ethics-and-tech/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-d38cghxwqf:record",
+          "objectId": "ko-d38cghxwqf",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-d38cghxwqf",
+          "availability": "available"
+        },
+        {
+          "id": "ko-d38cghxwqf:media:0",
+          "objectId": "ko-d38cghxwqf",
+          "role": "media",
+          "mediaType": "image/png",
+          "href": "/works/ethics-and-tech/logo.png",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-49cp2e8mrm",
+      "type": "Project",
+      "title": "Canada’s Mosaic",
+      "date": "2026-09-02",
+      "summary": "Where Canadians say their families come from, neighbourhood by neighbourhood.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/canadas-mosaic/",
+      "revisionId": "sha256:89d0b2744f7d362e558c0837616e0bab39160a9cba6b1b73e64a765531bd837f",
+      "sequence": 17,
+      "representations": [
+        {
+          "id": "ko-49cp2e8mrm:page",
+          "objectId": "ko-49cp2e8mrm",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/canadas-mosaic/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-49cp2e8mrm:record",
+          "objectId": "ko-49cp2e8mrm",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-49cp2e8mrm",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-74femejj6r",
+      "type": "Video",
+      "title": "I never learnt to roll my Rs so I had to find a way",
+      "date": "2026-08-10",
+      "summary": "Twenty-four Rs divide a full rotation into 15° intervals.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/rolling-my-rs/",
+      "revisionId": "sha256:2e9dcb23ff31edbf4052027ec2d7eb47d44db7688d0f4d167fe7e2eead323ba3",
+      "sequence": 18,
+      "representations": [
+        {
+          "id": "ko-74femejj6r:page",
+          "objectId": "ko-74femejj6r",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/rolling-my-rs/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-74femejj6r:record",
+          "objectId": "ko-74femejj6r",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-74femejj6r",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nc4rsf5qrw",
+      "type": "Photograph",
+      "title": "Île Bizard",
+      "date": "2025-11-30",
+      "summary": "The shore at dusk, in falling snow.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/ile-bizard/",
+      "revisionId": "sha256:abc060b623961a139dd46a552156bf830074c9c99da040ac10a9d2f5c5a03c1f",
+      "sequence": 19,
+      "representations": [
+        {
+          "id": "ko-nc4rsf5qrw:page",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/ile-bizard/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nc4rsf5qrw:record",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nc4rsf5qrw",
+          "availability": "available"
+        },
+        {
+          "id": "ko-nc4rsf5qrw:media:0",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/ile-bizard/01-1440.avif",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-c54akbgp3t",
+      "type": "Event",
+      "title": "AgenticWeb@NYC, Columbia University",
+      "date": "2025-11-15",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/gkbilhxg",
+      "revisionId": "sha256:65a9f1658770894d581f0345d93bbb944c9ce004c8a6967846f0f5923a6e29e4",
+      "sequence": 20,
+      "representations": [
+        {
+          "id": "ko-c54akbgp3t:page",
+          "objectId": "ko-c54akbgp3t",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/gkbilhxg",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-c54akbgp3t:record",
+          "objectId": "ko-c54akbgp3t",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-c54akbgp3t",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-tbq7hdfxxd",
+      "type": "Event",
+      "title": "MCP Night: Project NANDA × Akamai",
+      "date": "2025-11-05",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/dy8sye5u",
+      "revisionId": "sha256:791b1f9cbd7622a01f47475eb065b0d746af58b5999e366849ae3d57ab786e67",
+      "sequence": 21,
+      "representations": [
+        {
+          "id": "ko-tbq7hdfxxd:page",
+          "objectId": "ko-tbq7hdfxxd",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/dy8sye5u",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-tbq7hdfxxd:record",
+          "objectId": "ko-tbq7hdfxxd",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-tbq7hdfxxd",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-qdx464g4er",
+      "type": "Event",
+      "title": "NANDA Meetup@Hult: AgenticWeb",
+      "date": "2025-10-23",
+      "visibility": "public",
+      "canonicalUri": "https://o.lu.ma/904VZpvfSO?cid=ycx4is8kg87juhu",
+      "revisionId": "sha256:fdfe23132d587e5efdf3b4ebb198e2e459f17c9480a22f2f8c8121d64d5e18ca",
+      "sequence": 22,
+      "representations": [
+        {
+          "id": "ko-qdx464g4er:page",
+          "objectId": "ko-qdx464g4er",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://o.lu.ma/904VZpvfSO?cid=ycx4is8kg87juhu",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-qdx464g4er:record",
+          "objectId": "ko-qdx464g4er",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-qdx464g4er",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-5v9xhjhec6",
+      "type": "Photograph",
+      "title": "Gropius House",
+      "date": "2025-10-12",
+      "summary": "Walter Gropius’s house, from inside, out.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/gropius-house/",
+      "revisionId": "sha256:1362ef5915f4972a10b173ffacffd9eb086bf509816ae19a2c04a15483d46899",
+      "sequence": 23,
+      "representations": [
+        {
+          "id": "ko-5v9xhjhec6:page",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/gropius-house/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-5v9xhjhec6:record",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-5v9xhjhec6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:0",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/01-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:1",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/02-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:2",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/03-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:3",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/04-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:4",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/05-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:5",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/06-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:6",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/07-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:7",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/08-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:8",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/09-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:9",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/10-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:10",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/11-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:11",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/12-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:12",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/13-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:13",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/14-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:14",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/15-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:15",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/16-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:16",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/17-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:17",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/18-1440.avif",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-cntz7mswzs",
+      "type": "Event",
+      "title": "MIT Decentralized AI: Internet of AI Agents Summit",
+      "date": "2025-04-14",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/MIT-DecAI-Summit",
+      "revisionId": "sha256:ab0aec35e56444e2b4498f79f4774bf469b307397d2cef87853405d17650f562",
+      "sequence": 24,
+      "representations": [
+        {
+          "id": "ko-cntz7mswzs:page",
+          "objectId": "ko-cntz7mswzs",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/MIT-DecAI-Summit",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-cntz7mswzs:record",
+          "objectId": "ko-cntz7mswzs",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-cntz7mswzs",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nf7wjnx9a5",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Love in the Modern Age",
+      "date": "2025-03-14",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-M9bkvdNXve87VZn",
+      "revisionId": "sha256:362430e6dc606b5b652f83153d9a1e5fb0471773cd67f837d37fdb0d2fed0e21",
+      "sequence": 25,
+      "representations": [
+        {
+          "id": "ko-nf7wjnx9a5:page",
+          "objectId": "ko-nf7wjnx9a5",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-M9bkvdNXve87VZn",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nf7wjnx9a5:record",
+          "objectId": "ko-nf7wjnx9a5",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nf7wjnx9a5",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-gv427g4n32",
+      "type": "Event",
+      "title": "Authentic Identities? Photography’s Truth Claims, McGill",
+      "date": "2025-02-11",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-ipjES7e8RptD2RT",
+      "revisionId": "sha256:368727956f3bb81809ba6e93ebccc97619a1a085d564b41951042414e1310eb5",
+      "sequence": 26,
+      "representations": [
+        {
+          "id": "ko-gv427g4n32:page",
+          "objectId": "ko-gv427g4n32",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-ipjES7e8RptD2RT",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-gv427g4n32:record",
+          "objectId": "ko-gv427g4n32",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-gv427g4n32",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-9eb79rm86h",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Clicks, Cravings, Consequences",
+      "date": "2025-01-28",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-lfm4uFiaCX4DywG",
+      "revisionId": "sha256:7b2529e3d28d7eae2de92a28f623f355a86b5347aaacf4ac29a5be63e6476072",
+      "sequence": 27,
+      "representations": [
+        {
+          "id": "ko-9eb79rm86h:page",
+          "objectId": "ko-9eb79rm86h",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-lfm4uFiaCX4DywG",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-9eb79rm86h:record",
+          "objectId": "ko-9eb79rm86h",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-9eb79rm86h",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-xj6rzhqgta",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 4",
+      "date": "2024-12-04",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/j0uxdk4o",
+      "revisionId": "sha256:cdce49cee3d91c5f83dd970699e0bd27a94ca9f3b675db45d7a6ba0e60053ad4",
+      "sequence": 28,
+      "representations": [
+        {
+          "id": "ko-xj6rzhqgta:page",
+          "objectId": "ko-xj6rzhqgta",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/j0uxdk4o",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-xj6rzhqgta:record",
+          "objectId": "ko-xj6rzhqgta",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-xj6rzhqgta",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-3hs43rffxq",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Brains, Bytes, and Big Questions",
+      "date": "2024-11-15",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/sduhyv4i",
+      "revisionId": "sha256:b4cb618d2f54324e7ff90cefa7432333b61c5e2f4ef646c8de4f729ca65d5102",
+      "sequence": 29,
+      "representations": [
+        {
+          "id": "ko-3hs43rffxq:page",
+          "objectId": "ko-3hs43rffxq",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/sduhyv4i",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-3hs43rffxq:record",
+          "objectId": "ko-3hs43rffxq",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-3hs43rffxq",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-rzmbmga44k",
+      "type": "Poster",
+      "title": "Brains, Bytes, and Big Questions",
+      "date": "2024-11-15",
+      "summary": "For the McGill Ethics and Technology Roundtable.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/brains-bytes-poster/",
+      "revisionId": "sha256:cd211add6354015499a7d72cbb3665f194e92d399d708562908abefc1c55be5e",
+      "sequence": 30,
+      "representations": [
+        {
+          "id": "ko-rzmbmga44k:page",
+          "objectId": "ko-rzmbmga44k",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/brains-bytes-poster/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-rzmbmga44k:record",
+          "objectId": "ko-rzmbmga44k",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-rzmbmga44k",
+          "availability": "available"
+        },
+        {
+          "id": "ko-rzmbmga44k:media:0",
+          "objectId": "ko-rzmbmga44k",
+          "role": "media",
+          "mediaType": "image/jpeg",
+          "href": "/works/brains-bytes-poster/poster.jpg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-r2jg87f3vr",
+      "type": "Event",
+      "title": "MIT Decentralized AI Summit",
+      "date": "2024-10-11",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/y7wmn3gd",
+      "revisionId": "sha256:0d9be687a8f400440c95b6ce48909f7f626033f767db6a6965dbe7f03d5873cd",
+      "sequence": 31,
+      "representations": [
+        {
+          "id": "ko-r2jg87f3vr:page",
+          "objectId": "ko-r2jg87f3vr",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/y7wmn3gd",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-r2jg87f3vr:record",
+          "objectId": "ko-r2jg87f3vr",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-r2jg87f3vr",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-zx3ms3c9zf",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 3",
+      "date": "2024-09-12",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/mn826b81",
+      "revisionId": "sha256:d6881bf6d92609f87ad15086e5cc7c3df3e0669d65a21dce6e543b70ffe3bb7d",
+      "sequence": 32,
+      "representations": [
+        {
+          "id": "ko-zx3ms3c9zf:page",
+          "objectId": "ko-zx3ms3c9zf",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/mn826b81",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-zx3ms3c9zf:record",
+          "objectId": "ko-zx3ms3c9zf",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-zx3ms3c9zf",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-kwx2e3rsnd",
+      "type": "Event",
+      "title": "MIT Emerging Worlds + AI Webinar",
+      "date": "2024-08-22",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/fe334hjy",
+      "revisionId": "sha256:30a502a72da85cd6233510c9c2a307206d431fa0206c39a560a5f93e69f15d6b",
+      "sequence": 33,
+      "representations": [
+        {
+          "id": "ko-kwx2e3rsnd:page",
+          "objectId": "ko-kwx2e3rsnd",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/fe334hjy",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-kwx2e3rsnd:record",
+          "objectId": "ko-kwx2e3rsnd",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-kwx2e3rsnd",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ym8q8zrp5f",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 2",
+      "date": "2024-08-20",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/0m0h7c3c",
+      "revisionId": "sha256:c24064b4649e8e6193b0184eb4de0f2c739e106c317f075cdf5a4d336cc9efe2",
+      "sequence": 34,
+      "representations": [
+        {
+          "id": "ko-ym8q8zrp5f:page",
+          "objectId": "ko-ym8q8zrp5f",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/0m0h7c3c",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ym8q8zrp5f:record",
+          "objectId": "ko-ym8q8zrp5f",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ym8q8zrp5f",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-n27z2wfe8m",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 1",
+      "date": "2024-07-29",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/58mrjrkp",
+      "revisionId": "sha256:6f27d1bda361cd81c3578cee8f6c069d07b94087b2552c003392bc3fee0da9ed",
+      "sequence": 35,
+      "representations": [
+        {
+          "id": "ko-n27z2wfe8m:page",
+          "objectId": "ko-n27z2wfe8m",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/58mrjrkp",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-n27z2wfe8m:record",
+          "objectId": "ko-n27z2wfe8m",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-n27z2wfe8m",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "type": "relatedTo",
+      "from": "ko-mpy8kryr9n",
+      "to": "ko-ffhvk6k4d8",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-ttt9mmayf9"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-ffhvk6k4d8",
+      "to": "ko-mpy8kryr9n",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-ttt9mmayf9"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-s2bazqtptk",
+      "to": "ko-ptghkmcqb7",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-apfcpr8p49",
+      "to": "ko-ptghkmcqb7",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-fd8np3x3kz",
+      "to": "ko-ptghkmcqb7",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-ptghkmcqb7",
+      "to": "ko-s2bazqtptk",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-ptghkmcqb7",
+      "to": "ko-apfcpr8p49",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-ptghkmcqb7",
+      "to": "ko-fd8np3x3kz",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-s2bazqtptk",
+      "to": "ko-apfcpr8p49",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-s2bazqtptk",
+      "to": "ko-fd8np3x3kz",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-apfcpr8p49",
+      "to": "ko-s2bazqtptk",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-fd8np3x3kz",
+      "to": "ko-s2bazqtptk",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-apfcpr8p49",
+      "to": "ko-fd8np3x3kz",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-fd8np3x3kz",
+      "to": "ko-apfcpr8p49",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-d7wxwxkp6m"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-d38cghxwqf",
+      "to": "ko-nf7wjnx9a5",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-d38cghxwqf",
+      "to": "ko-gv427g4n32",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-d38cghxwqf",
+      "to": "ko-9eb79rm86h",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-d38cghxwqf",
+      "to": "ko-3hs43rffxq",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-d38cghxwqf",
+      "to": "ko-rzmbmga44k",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-nf7wjnx9a5",
+      "to": "ko-d38cghxwqf",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-gv427g4n32",
+      "to": "ko-d38cghxwqf",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-9eb79rm86h",
+      "to": "ko-d38cghxwqf",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-3hs43rffxq",
+      "to": "ko-d38cghxwqf",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-rzmbmga44k",
+      "to": "ko-d38cghxwqf",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-nf7wjnx9a5",
+      "to": "ko-gv427g4n32",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-nf7wjnx9a5",
+      "to": "ko-9eb79rm86h",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-nf7wjnx9a5",
+      "to": "ko-3hs43rffxq",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-nf7wjnx9a5",
+      "to": "ko-rzmbmga44k",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-gv427g4n32",
+      "to": "ko-nf7wjnx9a5",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-9eb79rm86h",
+      "to": "ko-nf7wjnx9a5",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-3hs43rffxq",
+      "to": "ko-nf7wjnx9a5",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-rzmbmga44k",
+      "to": "ko-nf7wjnx9a5",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-gv427g4n32",
+      "to": "ko-9eb79rm86h",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-gv427g4n32",
+      "to": "ko-3hs43rffxq",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-gv427g4n32",
+      "to": "ko-rzmbmga44k",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-9eb79rm86h",
+      "to": "ko-gv427g4n32",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-3hs43rffxq",
+      "to": "ko-gv427g4n32",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-rzmbmga44k",
+      "to": "ko-gv427g4n32",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-9eb79rm86h",
+      "to": "ko-3hs43rffxq",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-9eb79rm86h",
+      "to": "ko-rzmbmga44k",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-3hs43rffxq",
+      "to": "ko-9eb79rm86h",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-rzmbmga44k",
+      "to": "ko-9eb79rm86h",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-3hs43rffxq",
+      "to": "ko-rzmbmga44k",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    },
+    {
+      "type": "relatedTo",
+      "from": "ko-rzmbmga44k",
+      "to": "ko-3hs43rffxq",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      },
+      "via": "ko-htqkcd6w6w"
+    }
+  ],
+  "collections": [
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-htqkcd6w6w",
+      "kind": "thread",
+      "title": "McGill",
+      "visibility": "public",
+      "orderKey": "position",
+      "members": [
+        {
+          "objectId": "ko-d38cghxwqf",
+          "position": 0
+        },
+        {
+          "objectId": "ko-nf7wjnx9a5",
+          "position": 1
+        },
+        {
+          "objectId": "ko-gv427g4n32",
+          "position": 2
+        },
+        {
+          "objectId": "ko-9eb79rm86h",
+          "position": 3
+        },
+        {
+          "objectId": "ko-3hs43rffxq",
+          "position": 4
+        },
+        {
+          "objectId": "ko-rzmbmga44k",
+          "position": 5
+        }
+      ],
+      "rationale": "McGill is named in each entry.",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-d7wxwxkp6m",
+      "kind": "thread",
+      "title": "Blink",
+      "visibility": "public",
+      "orderKey": "position",
+      "members": [
+        {
+          "objectId": "ko-s2bazqtptk",
+          "position": 0
+        },
+        {
+          "objectId": "ko-apfcpr8p49",
+          "position": 1
+        },
+        {
+          "objectId": "ko-fd8np3x3kz",
+          "position": 2
+        },
+        {
+          "objectId": "ko-ptghkmcqb7",
+          "position": 3
+        }
+      ],
+      "rationale": "Blink names its project.",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ttt9mmayf9",
+      "kind": "thread",
+      "title": "Unigrid",
+      "visibility": "public",
+      "orderKey": "position",
+      "members": [
+        {
+          "objectId": "ko-mpy8kryr9n",
+          "position": 0
+        },
+        {
+          "objectId": "ko-ffhvk6k4d8",
+          "position": 1
+        }
+      ],
+      "rationale": "unigrid.app’s label names the Unigrid sheet.",
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    }
+  ],
+  "revisions": {
+    "sha256:1afb9fe106ee5364de92d6bbcf9f5c8e05f6008c605aabb5ddb1fbd029d2ee98": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-4qxy3rfv6a",
+      "type": "System",
+      "title": "Register",
+      "date": "2026-11-05",
+      "summary": "One list, read by people and by machines.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/register/",
+      "revisionId": "sha256:1afb9fe106ee5364de92d6bbcf9f5c8e05f6008c605aabb5ddb1fbd029d2ee98",
+      "sequence": 0,
+      "representations": [
+        {
+          "id": "ko-4qxy3rfv6a:page",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/register/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-4qxy3rfv6a:record",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-4qxy3rfv6a",
+          "availability": "available"
+        },
+        {
+          "id": "ko-4qxy3rfv6a:media:0",
+          "objectId": "ko-4qxy3rfv6a",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/register.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:916ecdcfaa0441d0e16b2ae58ec4c6025741a7d38bb1676b09c56302267a45cd": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nh6wjztr2f",
+      "type": "System",
+      "title": "Threads",
+      "date": "2026-11-05",
+      "summary": "Connections an author made, never ones a machine guessed.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/threads/",
+      "revisionId": "sha256:916ecdcfaa0441d0e16b2ae58ec4c6025741a7d38bb1676b09c56302267a45cd",
+      "sequence": 1,
+      "representations": [
+        {
+          "id": "ko-nh6wjztr2f:page",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/threads/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nh6wjztr2f:record",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nh6wjztr2f",
+          "availability": "available"
+        },
+        {
+          "id": "ko-nh6wjztr2f:media:0",
+          "objectId": "ko-nh6wjztr2f",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/threads.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:50a7c98acfa4908c7fa170c9443c203062222a541ef963f35941bd15a0be4ab3": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-sf38kg2fy5",
+      "type": "System",
+      "title": "Index",
+      "date": "2026-11-05",
+      "summary": "A list that filters without losing its place.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/index/",
+      "revisionId": "sha256:50a7c98acfa4908c7fa170c9443c203062222a541ef963f35941bd15a0be4ab3",
+      "sequence": 2,
+      "representations": [
+        {
+          "id": "ko-sf38kg2fy5:page",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/index/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-sf38kg2fy5:record",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-sf38kg2fy5",
+          "availability": "available"
+        },
+        {
+          "id": "ko-sf38kg2fy5:media:0",
+          "objectId": "ko-sf38kg2fy5",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/index.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:7fbee2c9bbbdb062a2664f3b5ca481537a78e7d5ab4885415d5bd3b4d3f3dc9d": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-5djg8427a9",
+      "type": "System",
+      "title": "Approach",
+      "date": "2026-10-26",
+      "summary": "Which link the pointer is going for, and how surely.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/approach/",
+      "revisionId": "sha256:7fbee2c9bbbdb062a2664f3b5ca481537a78e7d5ab4885415d5bd3b4d3f3dc9d",
+      "sequence": 3,
+      "representations": [
+        {
+          "id": "ko-5djg8427a9:page",
+          "objectId": "ko-5djg8427a9",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/approach/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-5djg8427a9:record",
+          "objectId": "ko-5djg8427a9",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-5djg8427a9",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5djg8427a9:media:0",
+          "objectId": "ko-5djg8427a9",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/approach.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:7beb4a3950f65c73e0fa21b21bb7bd87a15540ac5f2e32cb7a6f042a67c00447": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-p459z8xqc7",
+      "type": "System",
+      "title": "Whereabouts",
+      "date": "2026-10-26",
+      "summary": "Pages as places along one surface.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/whereabouts/",
+      "revisionId": "sha256:7beb4a3950f65c73e0fa21b21bb7bd87a15540ac5f2e32cb7a6f042a67c00447",
+      "sequence": 4,
+      "representations": [
+        {
+          "id": "ko-p459z8xqc7:page",
+          "objectId": "ko-p459z8xqc7",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/whereabouts/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-p459z8xqc7:record",
+          "objectId": "ko-p459z8xqc7",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-p459z8xqc7",
+          "availability": "available"
+        },
+        {
+          "id": "ko-p459z8xqc7:media:0",
+          "objectId": "ko-p459z8xqc7",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/whereabouts.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:ba2eb2fae9d8ad4793b35f199cbb3e33ee677eee5b04c5323bf6e1a9e3c06ef9": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-mpy8kryr9n",
+      "type": "Project",
+      "title": "unigrid.app",
+      "date": "2026-10-24",
+      "summary": "Compose a Unigrid B6 sheet in the browser, and print it at full size.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/unigrid-app/",
+      "revisionId": "sha256:ba2eb2fae9d8ad4793b35f199cbb3e33ee677eee5b04c5323bf6e1a9e3c06ef9",
+      "sequence": 5,
+      "representations": [
+        {
+          "id": "ko-mpy8kryr9n:page",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/unigrid-app/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-mpy8kryr9n:record",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-mpy8kryr9n",
+          "availability": "available"
+        },
+        {
+          "id": "ko-mpy8kryr9n:media:0",
+          "objectId": "ko-mpy8kryr9n",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/unigrid-app/choose-a-space.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:162bf4b5d4925d3545050d7c60c8d32ee4375a303f4af6c0b84817c9287d02b9": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-7spgmswzv6",
+      "type": "System",
+      "title": "Layers",
+      "date": "2026-10-26",
+      "summary": "The drawings a piece was made from, laid over it: look to see them, press to keep them.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/layers/",
+      "revisionId": "sha256:162bf4b5d4925d3545050d7c60c8d32ee4375a303f4af6c0b84817c9287d02b9",
+      "sequence": 6,
+      "representations": [
+        {
+          "id": "ko-7spgmswzv6:page",
+          "objectId": "ko-7spgmswzv6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/layers/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-7spgmswzv6:record",
+          "objectId": "ko-7spgmswzv6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-7spgmswzv6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-7spgmswzv6:media:0",
+          "objectId": "ko-7spgmswzv6",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/films/layers.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:71b07f504cff9af6889516b74ca436246d1573f5f18c0f5171c0a4ecb8deb253": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-bf6ng9wpqg",
+      "type": "Project",
+      "title": "KhannaOffice",
+      "date": "2026-08-12",
+      "summary": "The studio’s public record: products, research and releases.",
+      "visibility": "public",
+      "canonicalUri": "https://khannaoffice.com/",
+      "revisionId": "sha256:71b07f504cff9af6889516b74ca436246d1573f5f18c0f5171c0a4ecb8deb253",
+      "sequence": 7,
+      "representations": [
+        {
+          "id": "ko-bf6ng9wpqg:page",
+          "objectId": "ko-bf6ng9wpqg",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://khannaoffice.com/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-bf6ng9wpqg:record",
+          "objectId": "ko-bf6ng9wpqg",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-bf6ng9wpqg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:49da8f6ffa67616cb05f8bf648f3160f4b08ea840d970f1890d7776e0160e1ea": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ptghkmcqb7",
+      "type": "Project",
+      "title": "Blink",
+      "date": "2026-02-11",
+      "summary": "Blink’s website, for people and the AI agents shopping for them.",
+      "visibility": "public",
+      "canonicalUri": "https://thankyoublink.com/",
+      "revisionId": "sha256:49da8f6ffa67616cb05f8bf648f3160f4b08ea840d970f1890d7776e0160e1ea",
+      "sequence": 8,
+      "representations": [
+        {
+          "id": "ko-ptghkmcqb7:page",
+          "objectId": "ko-ptghkmcqb7",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://thankyoublink.com/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ptghkmcqb7:record",
+          "objectId": "ko-ptghkmcqb7",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ptghkmcqb7",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:a68879f9816c4afcaa769bb8c63052c617cb836240f95792920aaf1677590666": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ffhvk6k4d8",
+      "type": "System",
+      "title": "Unigrid",
+      "date": "2026-08-12",
+      "summary": "A layout system for React, set on the module of the National Park Service publications.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/unigrid/",
+      "revisionId": "sha256:a68879f9816c4afcaa769bb8c63052c617cb836240f95792920aaf1677590666",
+      "sequence": 9,
+      "representations": [
+        {
+          "id": "ko-ffhvk6k4d8:page",
+          "objectId": "ko-ffhvk6k4d8",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/unigrid/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ffhvk6k4d8:record",
+          "objectId": "ko-ffhvk6k4d8",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ffhvk6k4d8",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:c28a2452d81e11c61e83ea330d2a99f8f7e192aadfc3df318072588af57917ed": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-s2bazqtptk",
+      "type": "Identity",
+      "title": "Blink mascot, alive",
+      "date": "2026-10-21",
+      "summary": "It rolls its eyes, and now and then it blinks.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-mascot-alive/",
+      "revisionId": "sha256:c28a2452d81e11c61e83ea330d2a99f8f7e192aadfc3df318072588af57917ed",
+      "sequence": 10,
+      "representations": [
+        {
+          "id": "ko-s2bazqtptk:page",
+          "objectId": "ko-s2bazqtptk",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-mascot-alive/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-s2bazqtptk:record",
+          "objectId": "ko-s2bazqtptk",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-s2bazqtptk",
+          "availability": "available"
+        },
+        {
+          "id": "ko-s2bazqtptk:media:0",
+          "objectId": "ko-s2bazqtptk",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/blink-mascot/mascot.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:379d253aa94a50da4f2bd2e5bf42e58f8d69387543462d7d81d0c12fae9d68fa": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-apfcpr8p49",
+      "type": "Writing",
+      "title": "Blink: Evidence-Bound Policy Authorization for Agentic Commerce",
+      "date": "2026-09-15",
+      "summary": "With Hadrien Padilla and Noah Edmunds.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-paper/",
+      "revisionId": "sha256:379d253aa94a50da4f2bd2e5bf42e58f8d69387543462d7d81d0c12fae9d68fa",
+      "sequence": 11,
+      "representations": [
+        {
+          "id": "ko-apfcpr8p49:page",
+          "objectId": "ko-apfcpr8p49",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-paper/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-apfcpr8p49:record",
+          "objectId": "ko-apfcpr8p49",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-apfcpr8p49",
+          "availability": "available"
+        },
+        {
+          "id": "ko-apfcpr8p49:media:0",
+          "objectId": "ko-apfcpr8p49",
+          "role": "media",
+          "mediaType": "application/pdf",
+          "href": "/works/blink-paper/blink-evidence-bound-policy-authorization.pdf",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:5364707db8c8a307c9be8fda1b4833654d67de33690d9f5508313a29572997c3": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-2thb326tz6",
+      "type": "Identity",
+      "title": "CustomKern logo",
+      "date": "2026-09-20",
+      "summary": "The wordmark comes loose, and settles.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/customkern-logo/",
+      "revisionId": "sha256:5364707db8c8a307c9be8fda1b4833654d67de33690d9f5508313a29572997c3",
+      "sequence": 12,
+      "representations": [
+        {
+          "id": "ko-2thb326tz6:page",
+          "objectId": "ko-2thb326tz6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/customkern-logo/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-2thb326tz6:record",
+          "objectId": "ko-2thb326tz6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-2thb326tz6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-2thb326tz6:media:0",
+          "objectId": "ko-2thb326tz6",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/customkern-logo/customkern.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:19255278aa895135eedf9fbec9d70e22eaf713494da84c1ca748452838628fa9": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-w325thdahv",
+      "type": "Video",
+      "title": "KhannaOffice orbit",
+      "date": "2026-08-13",
+      "summary": "The greeting: K, a sweep, O, KhannaOffice.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/khannaoffice-orbit/",
+      "revisionId": "sha256:19255278aa895135eedf9fbec9d70e22eaf713494da84c1ca748452838628fa9",
+      "sequence": 13,
+      "representations": [
+        {
+          "id": "ko-w325thdahv:page",
+          "objectId": "ko-w325thdahv",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/khannaoffice-orbit/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-w325thdahv:record",
+          "objectId": "ko-w325thdahv",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-w325thdahv",
+          "availability": "available"
+        },
+        {
+          "id": "ko-w325thdahv:media:0",
+          "objectId": "ko-w325thdahv",
+          "role": "media",
+          "mediaType": "video/mp4",
+          "href": "/works/khannaoffice-orbit/orbit.mp4",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:277a39363ed5a917448e056b870c6d586c9a241d492e20834c0dcc09ddfb78b9": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-fd8np3x3kz",
+      "type": "Identity",
+      "title": "Blink mascot",
+      "date": "2026-07-22",
+      "summary": "Two half-lidded eyes, in Blink Blue.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/blink-mascot/",
+      "revisionId": "sha256:277a39363ed5a917448e056b870c6d586c9a241d492e20834c0dcc09ddfb78b9",
+      "sequence": 14,
+      "representations": [
+        {
+          "id": "ko-fd8np3x3kz:page",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/blink-mascot/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-fd8np3x3kz:record",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-fd8np3x3kz",
+          "availability": "available"
+        },
+        {
+          "id": "ko-fd8np3x3kz:media:0",
+          "objectId": "ko-fd8np3x3kz",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/blink-mascot/mascot.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:86d626c389dc7edb3b9fd6dc1a4fa2e69f628717d6bf57a0cc7b2d9873e65937": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-dckpz73axw",
+      "type": "Identity",
+      "title": "KhannaOffice logo",
+      "date": "2026-01-05",
+      "summary": "The wordmark.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/khannaoffice-logo/",
+      "revisionId": "sha256:86d626c389dc7edb3b9fd6dc1a4fa2e69f628717d6bf57a0cc7b2d9873e65937",
+      "sequence": 15,
+      "representations": [
+        {
+          "id": "ko-dckpz73axw:page",
+          "objectId": "ko-dckpz73axw",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/khannaoffice-logo/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-dckpz73axw:record",
+          "objectId": "ko-dckpz73axw",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-dckpz73axw",
+          "availability": "available"
+        },
+        {
+          "id": "ko-dckpz73axw:media:0",
+          "objectId": "ko-dckpz73axw",
+          "role": "media",
+          "mediaType": "image/svg+xml",
+          "href": "/works/khannaoffice-logo/logo.svg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:2038f479ef86f17bdfbc1a799d3cf38dc2dc20fbd6cec7dafaa4b83b11e88526": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-d38cghxwqf",
+      "type": "Project",
+      "title": "Ethics & Tech",
+      "date": "2026-01-12",
+      "summary": "A platform for ethics and technology, begun as roundtables at McGill.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/ethics-and-tech/",
+      "revisionId": "sha256:2038f479ef86f17bdfbc1a799d3cf38dc2dc20fbd6cec7dafaa4b83b11e88526",
+      "sequence": 16,
+      "representations": [
+        {
+          "id": "ko-d38cghxwqf:page",
+          "objectId": "ko-d38cghxwqf",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/ethics-and-tech/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-d38cghxwqf:record",
+          "objectId": "ko-d38cghxwqf",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-d38cghxwqf",
+          "availability": "available"
+        },
+        {
+          "id": "ko-d38cghxwqf:media:0",
+          "objectId": "ko-d38cghxwqf",
+          "role": "media",
+          "mediaType": "image/png",
+          "href": "/works/ethics-and-tech/logo.png",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:89d0b2744f7d362e558c0837616e0bab39160a9cba6b1b73e64a765531bd837f": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-49cp2e8mrm",
+      "type": "Project",
+      "title": "Canada’s Mosaic",
+      "date": "2026-09-02",
+      "summary": "Where Canadians say their families come from, neighbourhood by neighbourhood.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/canadas-mosaic/",
+      "revisionId": "sha256:89d0b2744f7d362e558c0837616e0bab39160a9cba6b1b73e64a765531bd837f",
+      "sequence": 17,
+      "representations": [
+        {
+          "id": "ko-49cp2e8mrm:page",
+          "objectId": "ko-49cp2e8mrm",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/canadas-mosaic/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-49cp2e8mrm:record",
+          "objectId": "ko-49cp2e8mrm",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-49cp2e8mrm",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:2e9dcb23ff31edbf4052027ec2d7eb47d44db7688d0f4d167fe7e2eead323ba3": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-74femejj6r",
+      "type": "Video",
+      "title": "I never learnt to roll my Rs so I had to find a way",
+      "date": "2026-08-10",
+      "summary": "Twenty-four Rs divide a full rotation into 15° intervals.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/rolling-my-rs/",
+      "revisionId": "sha256:2e9dcb23ff31edbf4052027ec2d7eb47d44db7688d0f4d167fe7e2eead323ba3",
+      "sequence": 18,
+      "representations": [
+        {
+          "id": "ko-74femejj6r:page",
+          "objectId": "ko-74femejj6r",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/rolling-my-rs/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-74femejj6r:record",
+          "objectId": "ko-74femejj6r",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-74femejj6r",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:abc060b623961a139dd46a552156bf830074c9c99da040ac10a9d2f5c5a03c1f": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nc4rsf5qrw",
+      "type": "Photograph",
+      "title": "Île Bizard",
+      "date": "2025-11-30",
+      "summary": "The shore at dusk, in falling snow.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/ile-bizard/",
+      "revisionId": "sha256:abc060b623961a139dd46a552156bf830074c9c99da040ac10a9d2f5c5a03c1f",
+      "sequence": 19,
+      "representations": [
+        {
+          "id": "ko-nc4rsf5qrw:page",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/ile-bizard/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nc4rsf5qrw:record",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nc4rsf5qrw",
+          "availability": "available"
+        },
+        {
+          "id": "ko-nc4rsf5qrw:media:0",
+          "objectId": "ko-nc4rsf5qrw",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/ile-bizard/01-1440.avif",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:65a9f1658770894d581f0345d93bbb944c9ce004c8a6967846f0f5923a6e29e4": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-c54akbgp3t",
+      "type": "Event",
+      "title": "AgenticWeb@NYC, Columbia University",
+      "date": "2025-11-15",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/gkbilhxg",
+      "revisionId": "sha256:65a9f1658770894d581f0345d93bbb944c9ce004c8a6967846f0f5923a6e29e4",
+      "sequence": 20,
+      "representations": [
+        {
+          "id": "ko-c54akbgp3t:page",
+          "objectId": "ko-c54akbgp3t",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/gkbilhxg",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-c54akbgp3t:record",
+          "objectId": "ko-c54akbgp3t",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-c54akbgp3t",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:791b1f9cbd7622a01f47475eb065b0d746af58b5999e366849ae3d57ab786e67": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-tbq7hdfxxd",
+      "type": "Event",
+      "title": "MCP Night: Project NANDA × Akamai",
+      "date": "2025-11-05",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/dy8sye5u",
+      "revisionId": "sha256:791b1f9cbd7622a01f47475eb065b0d746af58b5999e366849ae3d57ab786e67",
+      "sequence": 21,
+      "representations": [
+        {
+          "id": "ko-tbq7hdfxxd:page",
+          "objectId": "ko-tbq7hdfxxd",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/dy8sye5u",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-tbq7hdfxxd:record",
+          "objectId": "ko-tbq7hdfxxd",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-tbq7hdfxxd",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:fdfe23132d587e5efdf3b4ebb198e2e459f17c9480a22f2f8c8121d64d5e18ca": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-qdx464g4er",
+      "type": "Event",
+      "title": "NANDA Meetup@Hult: AgenticWeb",
+      "date": "2025-10-23",
+      "visibility": "public",
+      "canonicalUri": "https://o.lu.ma/904VZpvfSO?cid=ycx4is8kg87juhu",
+      "revisionId": "sha256:fdfe23132d587e5efdf3b4ebb198e2e459f17c9480a22f2f8c8121d64d5e18ca",
+      "sequence": 22,
+      "representations": [
+        {
+          "id": "ko-qdx464g4er:page",
+          "objectId": "ko-qdx464g4er",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://o.lu.ma/904VZpvfSO?cid=ycx4is8kg87juhu",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-qdx464g4er:record",
+          "objectId": "ko-qdx464g4er",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-qdx464g4er",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:1362ef5915f4972a10b173ffacffd9eb086bf509816ae19a2c04a15483d46899": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-5v9xhjhec6",
+      "type": "Photograph",
+      "title": "Gropius House",
+      "date": "2025-10-12",
+      "summary": "Walter Gropius’s house, from inside, out.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/gropius-house/",
+      "revisionId": "sha256:1362ef5915f4972a10b173ffacffd9eb086bf509816ae19a2c04a15483d46899",
+      "sequence": 23,
+      "representations": [
+        {
+          "id": "ko-5v9xhjhec6:page",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/gropius-house/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-5v9xhjhec6:record",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-5v9xhjhec6",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:0",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/01-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:1",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/02-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:2",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/03-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:3",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/04-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:4",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/05-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:5",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/06-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:6",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/07-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:7",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/08-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:8",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/09-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:9",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/10-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:10",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/11-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:11",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/12-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:12",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/13-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:13",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/14-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:14",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/15-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:15",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/16-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:16",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/17-1440.avif",
+          "availability": "available"
+        },
+        {
+          "id": "ko-5v9xhjhec6:media:17",
+          "objectId": "ko-5v9xhjhec6",
+          "role": "media",
+          "mediaType": "image/avif",
+          "href": "/works/gropius-house/18-1440.avif",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:ab0aec35e56444e2b4498f79f4774bf469b307397d2cef87853405d17650f562": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-cntz7mswzs",
+      "type": "Event",
+      "title": "MIT Decentralized AI: Internet of AI Agents Summit",
+      "date": "2025-04-14",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/MIT-DecAI-Summit",
+      "revisionId": "sha256:ab0aec35e56444e2b4498f79f4774bf469b307397d2cef87853405d17650f562",
+      "sequence": 24,
+      "representations": [
+        {
+          "id": "ko-cntz7mswzs:page",
+          "objectId": "ko-cntz7mswzs",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/MIT-DecAI-Summit",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-cntz7mswzs:record",
+          "objectId": "ko-cntz7mswzs",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-cntz7mswzs",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:362430e6dc606b5b652f83153d9a1e5fb0471773cd67f837d37fdb0d2fed0e21": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-nf7wjnx9a5",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Love in the Modern Age",
+      "date": "2025-03-14",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-M9bkvdNXve87VZn",
+      "revisionId": "sha256:362430e6dc606b5b652f83153d9a1e5fb0471773cd67f837d37fdb0d2fed0e21",
+      "sequence": 25,
+      "representations": [
+        {
+          "id": "ko-nf7wjnx9a5:page",
+          "objectId": "ko-nf7wjnx9a5",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-M9bkvdNXve87VZn",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-nf7wjnx9a5:record",
+          "objectId": "ko-nf7wjnx9a5",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-nf7wjnx9a5",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:368727956f3bb81809ba6e93ebccc97619a1a085d564b41951042414e1310eb5": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-gv427g4n32",
+      "type": "Event",
+      "title": "Authentic Identities? Photography’s Truth Claims, McGill",
+      "date": "2025-02-11",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-ipjES7e8RptD2RT",
+      "revisionId": "sha256:368727956f3bb81809ba6e93ebccc97619a1a085d564b41951042414e1310eb5",
+      "sequence": 26,
+      "representations": [
+        {
+          "id": "ko-gv427g4n32:page",
+          "objectId": "ko-gv427g4n32",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-ipjES7e8RptD2RT",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-gv427g4n32:record",
+          "objectId": "ko-gv427g4n32",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-gv427g4n32",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:7b2529e3d28d7eae2de92a28f623f355a86b5347aaacf4ac29a5be63e6476072": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-9eb79rm86h",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Clicks, Cravings, Consequences",
+      "date": "2025-01-28",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/e/evt-lfm4uFiaCX4DywG",
+      "revisionId": "sha256:7b2529e3d28d7eae2de92a28f623f355a86b5347aaacf4ac29a5be63e6476072",
+      "sequence": 27,
+      "representations": [
+        {
+          "id": "ko-9eb79rm86h:page",
+          "objectId": "ko-9eb79rm86h",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/e/evt-lfm4uFiaCX4DywG",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-9eb79rm86h:record",
+          "objectId": "ko-9eb79rm86h",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-9eb79rm86h",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:cdce49cee3d91c5f83dd970699e0bd27a94ca9f3b675db45d7a6ba0e60053ad4": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-xj6rzhqgta",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 4",
+      "date": "2024-12-04",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/j0uxdk4o",
+      "revisionId": "sha256:cdce49cee3d91c5f83dd970699e0bd27a94ca9f3b675db45d7a6ba0e60053ad4",
+      "sequence": 28,
+      "representations": [
+        {
+          "id": "ko-xj6rzhqgta:page",
+          "objectId": "ko-xj6rzhqgta",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/j0uxdk4o",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-xj6rzhqgta:record",
+          "objectId": "ko-xj6rzhqgta",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-xj6rzhqgta",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:b4cb618d2f54324e7ff90cefa7432333b61c5e2f4ef646c8de4f729ca65d5102": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-3hs43rffxq",
+      "type": "Event",
+      "title": "McGill Ethics and Technology Roundtable: Brains, Bytes, and Big Questions",
+      "date": "2024-11-15",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/sduhyv4i",
+      "revisionId": "sha256:b4cb618d2f54324e7ff90cefa7432333b61c5e2f4ef646c8de4f729ca65d5102",
+      "sequence": 29,
+      "representations": [
+        {
+          "id": "ko-3hs43rffxq:page",
+          "objectId": "ko-3hs43rffxq",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/sduhyv4i",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-3hs43rffxq:record",
+          "objectId": "ko-3hs43rffxq",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-3hs43rffxq",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:cd211add6354015499a7d72cbb3665f194e92d399d708562908abefc1c55be5e": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-rzmbmga44k",
+      "type": "Poster",
+      "title": "Brains, Bytes, and Big Questions",
+      "date": "2024-11-15",
+      "summary": "For the McGill Ethics and Technology Roundtable.",
+      "visibility": "public",
+      "canonicalUri": "https://rohankhanna.com/works/brains-bytes-poster/",
+      "revisionId": "sha256:cd211add6354015499a7d72cbb3665f194e92d399d708562908abefc1c55be5e",
+      "sequence": 30,
+      "representations": [
+        {
+          "id": "ko-rzmbmga44k:page",
+          "objectId": "ko-rzmbmga44k",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "/works/brains-bytes-poster/",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-rzmbmga44k:record",
+          "objectId": "ko-rzmbmga44k",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-rzmbmga44k",
+          "availability": "available"
+        },
+        {
+          "id": "ko-rzmbmga44k:media:0",
+          "objectId": "ko-rzmbmga44k",
+          "role": "media",
+          "mediaType": "image/jpeg",
+          "href": "/works/brains-bytes-poster/poster.jpg",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:0d9be687a8f400440c95b6ce48909f7f626033f767db6a6965dbe7f03d5873cd": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-r2jg87f3vr",
+      "type": "Event",
+      "title": "MIT Decentralized AI Summit",
+      "date": "2024-10-11",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/y7wmn3gd",
+      "revisionId": "sha256:0d9be687a8f400440c95b6ce48909f7f626033f767db6a6965dbe7f03d5873cd",
+      "sequence": 31,
+      "representations": [
+        {
+          "id": "ko-r2jg87f3vr:page",
+          "objectId": "ko-r2jg87f3vr",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/y7wmn3gd",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-r2jg87f3vr:record",
+          "objectId": "ko-r2jg87f3vr",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-r2jg87f3vr",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:d6881bf6d92609f87ad15086e5cc7c3df3e0669d65a21dce6e543b70ffe3bb7d": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-zx3ms3c9zf",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 3",
+      "date": "2024-09-12",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/mn826b81",
+      "revisionId": "sha256:d6881bf6d92609f87ad15086e5cc7c3df3e0669d65a21dce6e543b70ffe3bb7d",
+      "sequence": 32,
+      "representations": [
+        {
+          "id": "ko-zx3ms3c9zf:page",
+          "objectId": "ko-zx3ms3c9zf",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/mn826b81",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-zx3ms3c9zf:record",
+          "objectId": "ko-zx3ms3c9zf",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-zx3ms3c9zf",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:30a502a72da85cd6233510c9c2a307206d431fa0206c39a560a5f93e69f15d6b": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-kwx2e3rsnd",
+      "type": "Event",
+      "title": "MIT Emerging Worlds + AI Webinar",
+      "date": "2024-08-22",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/fe334hjy",
+      "revisionId": "sha256:30a502a72da85cd6233510c9c2a307206d431fa0206c39a560a5f93e69f15d6b",
+      "sequence": 33,
+      "representations": [
+        {
+          "id": "ko-kwx2e3rsnd:page",
+          "objectId": "ko-kwx2e3rsnd",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/fe334hjy",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-kwx2e3rsnd:record",
+          "objectId": "ko-kwx2e3rsnd",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-kwx2e3rsnd",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:c24064b4649e8e6193b0184eb4de0f2c739e106c317f075cdf5a4d336cc9efe2": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-ym8q8zrp5f",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 2",
+      "date": "2024-08-20",
+      "visibility": "public",
+      "canonicalUri": "https://lu.ma/0m0h7c3c",
+      "revisionId": "sha256:c24064b4649e8e6193b0184eb4de0f2c739e106c317f075cdf5a4d336cc9efe2",
+      "sequence": 34,
+      "representations": [
+        {
+          "id": "ko-ym8q8zrp5f:page",
+          "objectId": "ko-ym8q8zrp5f",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://lu.ma/0m0h7c3c",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-ym8q8zrp5f:record",
+          "objectId": "ko-ym8q8zrp5f",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-ym8q8zrp5f",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    },
+    "sha256:6f27d1bda361cd81c3578cee8f6c069d07b94087b2552c003392bc3fee0da9ed": {
+      "schemaVersion": "0.1.0",
+      "id": "ko-n27z2wfe8m",
+      "type": "Event",
+      "title": "MIT Decentralized AI Roundtable 1",
+      "date": "2024-07-29",
+      "visibility": "public",
+      "canonicalUri": "https://luma.com/58mrjrkp",
+      "revisionId": "sha256:6f27d1bda361cd81c3578cee8f6c069d07b94087b2552c003392bc3fee0da9ed",
+      "sequence": 35,
+      "representations": [
+        {
+          "id": "ko-n27z2wfe8m:page",
+          "objectId": "ko-n27z2wfe8m",
+          "role": "page",
+          "mediaType": "text/html",
+          "href": "https://luma.com/58mrjrkp",
+          "availability": "available",
+          "language": "en"
+        },
+        {
+          "id": "ko-n27z2wfe8m:record",
+          "objectId": "ko-n27z2wfe8m",
+          "role": "record",
+          "mediaType": "application/ld+json",
+          "href": "/api/v1/objects/ko-n27z2wfe8m",
+          "availability": "available"
+        }
+      ],
+      "provenance": {
+        "method": "authored",
+        "recordedBy": "Rohan Khanna"
+      }
+    }
+  },
+  "withdrawn": {}
+}
