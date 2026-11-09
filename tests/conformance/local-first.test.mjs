@@ -14,7 +14,7 @@ const NETWORK = /\b(fetch|XMLHttpRequest|sendBeacon|WebSocket|EventSource|naviga
 const SERVICES = /\b(supabase|firebase|firestore|dynamodb|mongodb|mongoose|postgres|pg-promise|redis|prisma|drizzle|knex|sequelize|auth0|clerk|passport|next-auth|lucia|axios|got|node-fetch|undici)\b/i
 const NODE_NET = /^node:(http|https|http2|net|tls|dgram|dns|cluster|worker_threads)$/
 
-const PACKAGES = { "packages/core/src": { nodeAllowed: [] }, "packages/state/src": { nodeAllowed: ["node:fs", "node:path"] }, "packages/adapters/git/src": { nodeAllowed: ["node:child_process", "node:fs", "node:path"] }, "packages/adapters/mcp/src": { nodeAllowed: [] } }
+const PACKAGES = { "packages/core/src": { nodeAllowed: [] }, "packages/state/src": { nodeAllowed: ["node:fs", "node:path"] }, "packages/adapters/git/src": { nodeAllowed: ["node:child_process", "node:fs", "node:path"] }, "packages/adapters/mcp/src": { nodeAllowed: [] }, "packages/web/src": { nodeAllowed: [] } }
 
 for (const [dir, { nodeAllowed }] of Object.entries(PACKAGES)) {
   test(`L-1 ${dir} has no network, database or auth-provider code or dependency`, () => {

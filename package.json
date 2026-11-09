@@ -1,10 +1,13 @@
 {
   "name": "@khannaoffice/system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The KhannaOffice System: specification, schemas, reference packages and conformance suite.",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "KhannaOffice",
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     "./core/*": {
       "types": "./dist/core/src/*.d.ts",
@@ -30,11 +33,22 @@
       "types": "./dist/adapters/git/src/render.d.ts",
       "default": "./dist/adapters/git/src/render.js"
     },
+    "./web/approach": {
+      "types": "./dist/web/src/approach.d.ts",
+      "default": "./dist/web/src/approach.js"
+    },
+    "./web/whereabouts": {
+      "types": "./dist/web/src/whereabouts.d.ts",
+      "default": "./dist/web/src/whereabouts.js"
+    },
+    "./web/whereabouts.css": "./packages/web/whereabouts.css",
     "./schemas/*": "./schemas/*"
   },
   "files": [
     "dist",
-    "schemas"
+    "schemas",
+    "packages/web/whereabouts.css",
+    "NOTICE"
   ],
   "publishConfig": {
     "access": "public"
@@ -52,7 +66,7 @@
     "build": "npm run clean && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "registry": "node scripts/registry.mjs",
-    "test": "node --test tests/conformance/*.test.mjs packages/core/test/*.test.ts packages/state/test/*.test.ts packages/adapters/mcp/test/*.test.ts packages/adapters/webmcp/test/*.test.ts packages/adapters/git/test/*.test.ts",
+    "test": "node --test tests/conformance/*.test.mjs packages/core/test/*.test.ts packages/state/test/*.test.ts packages/adapters/mcp/test/*.test.ts packages/adapters/webmcp/test/*.test.ts packages/adapters/git/test/*.test.ts packages/web/test/*.test.ts",
     "test:browser": "node --test tests/conformance/browser.test.mjs",
     "test:protocols": "node --test tests/conformance/parity-protocols.test.mjs",
     "test:bench": "node --test tests/conformance/test-bench.test.mjs",
@@ -76,6 +90,8 @@
     "webmcp",
     "local-first",
     "specification",
-    "conformance"
+    "conformance",
+    "view-transitions",
+    "pointer"
   ]
 }

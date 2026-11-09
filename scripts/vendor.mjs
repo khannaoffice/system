@@ -32,6 +32,8 @@ const FILES = [
   ["packages/core/src/maker.ts", "maker.ts"],
   ["packages/adapters/mcp/src/mcp.ts", "mcp.ts"],
   ["packages/adapters/webmcp/src/webmcp.ts", "webmcp.ts"],
+  ["packages/web/src/approach.ts", "approach.ts"],
+  ["packages/web/src/whereabouts.ts", "whereabouts.ts"],
 ]
 const header = (source) => `// From khannaoffice/system ${source}. Change it there, then copy it here.\n`
 const flatten = (text) => text.replace(/from "(?:(?:\.\.\/)+core\/src\/|\.\/)([a-z-]+)(?:\.ts)?"/g, 'from "./$1"')

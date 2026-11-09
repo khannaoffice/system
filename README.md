@@ -23,6 +23,7 @@ Publishing is an explicit, authorised operation. It makes one Git commit that ca
 | [`packages/core/`](packages/core) | The System as pure functions with no dependencies. |
 | [`packages/state/`](packages/state) | Personal state and write state, kept on your device. |
 | [`packages/adapters/`](packages/adapters) | The Model Context Protocol, WebMCP and Git. |
+| [`packages/web/`](packages/web) | Approach and Whereabouts: the pointer's reading on each link, and moves between pages. |
 | [`schemas/`](schemas) | Twenty JSON Schemas (Draft 2020-12) for the System's records. |
 | [`fixtures/rohankhanna/`](fixtures/rohankhanna) | The register of rohankhanna.com, rebuilt from its public API, with the durations of its films and the sizes of its photographs. |
 | [`tests/conformance/`](tests/conformance) | The registry of every requirement, and the suites that prove them. |
@@ -57,6 +58,9 @@ A register is plain data: objects, relations, collections and revisions. [`fixtu
 | `@khannaoffice/system/adapters/webmcp` | The browser adapter for WebMCP. |
 | `@khannaoffice/system/adapters/git` | Publishing to a Git repository, from Node. |
 | `@khannaoffice/system/adapters/git/render` | The same change as files and a commit message, with no filesystem. |
+| `@khannaoffice/system/web/approach` | Which link the pointer is going for, as `--near` on each one. |
+| `@khannaoffice/system/web/whereabouts` | Moves between pages, on View Transitions. |
+| `@khannaoffice/system/web/whereabouts.css` | The moves themselves, for you to tune. |
 | `@khannaoffice/system/schemas/<name>.schema.json` | One JSON Schema. |
 
 To keep the source in your own site, copy it there. The copy carries a header that names where each file came from, and `--check` exits with 1 when the copy has drifted.
@@ -104,6 +108,75 @@ The core is pure: it reads no clock, no network and no page. Time and identifier
 | `webmcp` | Experimental. It registers the capabilities with a browser that offers WebMCP, behind feature detection. |
 | `git` | Writes a committed change as plain JSON files and commits it with its receipt in the message. It never pushes. |
 
+## On the page
+
+The core is pure, so it never touches a page. The web part does, and it is small: two modules that bring the core's reading and its idea of place to a site.
+
+### Approach
+
+Approach watches the pointer and gives every target one number, `--near`, from 0 to 1. Your stylesheet decides what it means: an underline that darkens, a reflection that firms up, a shadow that lifts.
+
+```js
+import { approach } from "@khannaoffice/system/web/approach"
+
+const stop = approach({ selector: "nav a" })
+```
+
+```css
+nav a {
+  --near: 0;
+  text-decoration-color: color-mix(in srgb, currentColor calc(var(--near) * 100%), transparent);
+}
+```
+
+- **Ahead.** Every link is read a moment ahead of the pointer, so the link the hand is going for answers before it arrives.
+- **Near.** Closeness is measured to a link's edge, so a long link answers as readily as a short one.
+- **Between.** Neighbours share the pointer. Halfway between two links, they split it.
+- **Settle.** Every answer eases in and out, a little slower to leave than to arrive, so an unsteady hand never makes it flicker.
+
+The reading is the core's pointer adapter, the same numbers in every place it runs. Approach sleeps when nothing moves. A pen reads as the pointer, and a finger has no approach, so touch lets go of whatever the pointer was lighting. `approach()` takes `selector`, `radius` (72 pixels from a target's edge) and `onFrame`, and returns a function that stops reading and clears every `--near`.
+
+### Whereabouts
+
+Along, into, within: three ways of moving through pages, and in each you keep your whereabouts.
+
+- **Along.** Pages sit side by side on one surface. Going forward slides it left, going back slides it right, and whatever both pages share, a masthead say, holds still.
+- **Into.** A page can sit inside another, as a piece inside its list. Opening it zooms in on the link it came from, and its title travels with you. Leaving zooms back out onto the same place.
+- **Within.** Inside a page, only what changes moves. That is the core's `within`.
+
+```js
+import { move, onHistory } from "@khannaoffice/system/web/whereabouts"
+import "@khannaoffice/system/web/whereabouts.css"
+
+const PLACES = ["/", "/about/", "/works/"]
+
+const site = {
+  position: (path) => (PLACES.includes(path) ? PLACES.indexOf(path) : PLACES.length),
+  parent: (path) => (path.startsWith("/works/") && path !== "/works/" ? "/works/" : null),
+  focus: (from, to) => document.querySelector(`[href="${to}"]`) ?? document.querySelector("h1"),
+  travellers: (from, to) => document.querySelectorAll(`[data-piece="${to}"], [data-piece="${from}"]`),
+}
+
+move(site, location.pathname, href, () => render(href))
+
+onHistory(site, () => currentPath, render)
+```
+
+It is built on the web's own View Transitions, around whatever navigation a site already has, so links, the address bar and the back button work as they always have. Touch anything mid-move and it finishes at once. Where the browser has no View Transitions, or the reader prefers less motion, the page changes without a move.
+
+| The site | |
+|---|---|
+| `position(path)` | Where a path sits along the surface. Paths at the same place do not move. |
+| `parent(path)` | The path it sits inside, if any. Moving between the two zooms. |
+| `focus(from, to)` | The element a zoom centres on: the link followed, or the title left. |
+| `travellers(from, to)` | The elements that travel on their own during a zoom, such as a piece's title. |
+| `here()` | The path the address bar shows. Defaults to `location.pathname`. |
+| `ready(path)` | Resolves once that page is in the document, for routers that render after they are asked. |
+
+`onHistory` makes the back and forward buttons move too, and never twice: a swipe the browser already animates is left to the browser. With a router that renders from its own history listener, Next.js among them, leave out `update`. Whereabouts then holds the history event, captures the old page, and hands the event on.
+
+The stylesheet holds the moves. Tune them with `--whereabouts-step`, `--whereabouts-slide`, `--whereabouts-zoom` and `--whereabouts-ease`. During a move, `<html>` carries `data-whereabouts` with the move's name, and each traveller carries `data-whereabouts-travelling`.
+
 ## Run the tests
 
 The tests run TypeScript directly, so they need Node 22.18 or later.
@@ -116,7 +189,7 @@ npm run build
 npm run registry
 ```
 
-`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the schemas and the scan for network code. Of its 258 tests, 224 run on their own and 34 wait for a site. Read the result from the exit code.
+`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the web part, the schemas and the scan for network code. Of its 276 tests, 242 run on their own and 34 wait for a site. Read the result from the exit code.
 
 `npm run registry` rebuilds the requirement registry after a change to section 24 of the specification or to amendment 0001. A requirement is marked passing only when a test file that names it exists.
 
@@ -138,6 +211,6 @@ SITE_URL=http://localhost:3000 SITE_REPO=<folder> npm run test:bench
 
 ## Licence
 
-Copyright 2026 Rohan Khanna, carrying on business as KhannaOffice. All rights reserved.
+The KhannaOffice System is under the Apache License 2.0: the specification, the schemas, the code and the tests. You may use it, change it, build your own implementation of it and sell what you make. Keep the copyright notice and the [`NOTICE`](NOTICE) file with any copy you pass on. The licence gives no right to the KhannaOffice name.
 
-A licence for the System has not been chosen yet. You are welcome to read the specification and the code. For any other use, write to hello@khannaoffice.com.
+Copyright 2026 Rohan Khanna, carrying on business as KhannaOffice. The full terms are in [`LICENSE`](LICENSE). For anything else, write to hello@khannaoffice.com.

@@ -1,0 +1,43 @@
+:root {
+  --whereabouts-step: 96px;
+  --whereabouts-slide: 620ms;
+  --whereabouts-zoom: 380ms;
+  --whereabouts-ease: cubic-bezier(0.22, 0.61, 0.21, 1);
+}
+
+html[data-whereabouts]::view-transition-group(*),
+html[data-whereabouts]::view-transition-old(root),
+html[data-whereabouts]::view-transition-new(root) {
+  animation-duration: var(--whereabouts-slide);
+  animation-timing-function: var(--whereabouts-ease);
+}
+html[data-whereabouts="forward"]::view-transition-old(root) { animation-name: whereabouts-leave-left; }
+html[data-whereabouts="forward"]::view-transition-new(root) { animation-name: whereabouts-arrive-right; }
+html[data-whereabouts="back"]::view-transition-old(root) { animation-name: whereabouts-leave-right; }
+html[data-whereabouts="back"]::view-transition-new(root) { animation-name: whereabouts-arrive-left; }
+@keyframes whereabouts-leave-left { to { transform: translateX(calc(-1 * var(--whereabouts-step))); opacity: 0; } }
+@keyframes whereabouts-arrive-right { from { transform: translateX(var(--whereabouts-step)); opacity: 0; } }
+@keyframes whereabouts-leave-right { to { transform: translateX(var(--whereabouts-step)); opacity: 0; } }
+@keyframes whereabouts-arrive-left { from { transform: translateX(calc(-1 * var(--whereabouts-step))); opacity: 0; } }
+
+html[data-whereabouts^="zoom"]::view-transition-group(*),
+html[data-whereabouts^="zoom"]::view-transition-old(root),
+html[data-whereabouts^="zoom"]::view-transition-new(root) {
+  animation-duration: var(--whereabouts-zoom);
+  transform-origin: var(--zoom-x, 50%) var(--zoom-y, 40%);
+}
+html[data-whereabouts="zoom-in"]::view-transition-old(root) { animation-name: whereabouts-zoom-past; }
+html[data-whereabouts="zoom-in"]::view-transition-new(root) { animation-name: whereabouts-zoom-arrive; }
+html[data-whereabouts="zoom-out"]::view-transition-old(root) { animation-name: whereabouts-zoom-recede; }
+html[data-whereabouts="zoom-out"]::view-transition-new(root) { animation-name: whereabouts-zoom-return; }
+@keyframes whereabouts-zoom-past { to { transform: scale(1.06); opacity: 0; } }
+@keyframes whereabouts-zoom-arrive { from { transform: scale(0.94); opacity: 0; } }
+@keyframes whereabouts-zoom-recede { to { transform: scale(0.94); opacity: 0; } }
+@keyframes whereabouts-zoom-return { from { transform: scale(1.06); opacity: 0; } }
+
+html[data-whereabouts^="zoom"] [data-whereabouts-travelling] {
+  view-transition-name: var(--whereabouts-name, whereabouts-traveller);
+  view-transition-class: whereabouts-traveller;
+}
+::view-transition-old(*.whereabouts-traveller),
+::view-transition-new(*.whereabouts-traveller) { width: auto; height: auto; object-fit: none; }
