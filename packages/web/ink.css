@@ -1,0 +1,99 @@
+/*
+ * Ink. Type is placed and sized by what it draws, not by the box it came in.
+ *
+ * Put `data-ink` on <html> (or on any container). Inside it:
+ *   - a text block's box runs from its first line's capitals to its last
+ *     line's baseline, so padding and margins are the space a reader sees
+ *   - line-height is the distance from one baseline to the next
+ *   - a glyph (an icon) marked `data-ink-glyph` stands on the baseline and
+ *     reaches the capitals, in any face, at any size
+ *   - media never leaves descender space under it, and never pokes out of a
+ *     trimmed line
+ *   - a change of face inside a line (code, sub, sup) never moves the lines
+ *
+ * Edges:   data-ink="cap" (default) | "ex" (lowercase settings) | "text"
+ *          (only the leading goes: scripts without capitals, CJK today)
+ * Size:    data-ink-size="ex" | "cap": every face below matches the x-height
+ *          (or cap height) of the face set here, fallbacks and code included
+ * Opt out: data-ink="off" on any element and its contents
+ *
+ * Trimmed: p, h1-h6, li, dt, dd, blockquote, figcaption, caption, th, td,
+ * label, legend, summary, button, pre, address, and anything marked
+ * data-ink-box. Containers are not, so a site's own rule on a child wins.
+ *
+ * Every rule is wrapped in :where(), so it weighs nothing against a site's
+ * own CSS. Nothing here needs JavaScript; ink.ts adds the left edge.
+ */
+
+:where([data-ink]) {
+  --ink-over: cap;
+  --ink-under: alphabetic;
+}
+:where([data-ink="ex"]) { --ink-over: ex; }
+:where([data-ink="text"]) { --ink-over: text; --ink-under: text; }
+:where([data-ink]:lang(ja, zh, ko, yue)) { --ink-over: text; --ink-under: text; }
+
+/* The trim, on the elements that carry lines of text. Containers are left
+   alone on purpose: a container's trim reaches into its first child's first
+   line, so it would overrule the child's own rule, and it would cut any line
+   whose tallest thing is a button or an image. Any other element that holds
+   text directly asks for it with data-ink-box. */
+:where([data-ink]) :where(
+  p, h1, h2, h3, h4, h5, h6, li, dt, dd, blockquote, figcaption, caption,
+  th, td, label, legend, summary, button, pre, address, [data-ink-box]
+),
+:where([data-ink-box]) {
+  text-box: trim-both var(--ink-over) var(--ink-under);
+}
+
+/* A line whose tallest thing is not text would be cut at the capitals and
+   hang over its neighbour, so a text element that holds a control or an
+   unmarked graphic directly keeps its box. */
+:where([data-ink] :has(> :is(button, input, select, textarea, svg:not([data-ink-glyph]), [data-ink-glyph="free"]))) {
+  text-box: none;
+}
+
+/* Media are blocks: no descender gap beneath them, nothing to trim. */
+:where([data-ink] :is(img, video, canvas, iframe, picture, object, embed)):not([data-ink-glyph]) {
+  display: block;
+}
+
+/* A glyph set in text: cap-high on the baseline, or x-high with "ex". */
+:where([data-ink] [data-ink-glyph], [data-ink-glyph]) {
+  display: inline;
+  block-size: 1cap;
+  inline-size: auto;
+  vertical-align: baseline;
+}
+:where([data-ink-glyph="ex"]) { block-size: 1ex; }
+/* Stroked glyphs draw at the face's own stem, once ink.ts has measured it. */
+/* On the children: any author rule outranks an SVG stroke-width attribute. */
+:where([data-ink-stem], [data-ink-stem] *) { stroke-width: var(--ink-stem); }
+:where([data-ink-stem] *) { vector-effect: non-scaling-stroke; }
+
+/* A change of face or size inside a line must not push the line apart:
+   its own ascent and descent would otherwise widen that one line. */
+:where([data-ink] :is(code, kbd, samp, sub, sup)) {
+  line-height: 0;
+}
+
+/* One size, every face: below this, any face matches this one's x-height
+   (or cap height). `from-font` resolves here and is inherited as a number.
+   The `font` shorthand resets it (by the CSS spec), so set the face with
+   font-family and font-size on anything below. */
+:where([data-ink-size="ex"]) { font-size-adjust: ex-height from-font; }
+:where([data-ink-size="cap"]) { font-size-adjust: cap-height from-font; }
+
+/* Long-standing defaults that were never right. */
+:where(html[data-ink]) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+:where([data-ink] :is(h1, h2, h3, h4, h5, h6, caption, figcaption)) { text-wrap: balance; }
+:where([data-ink] :is(p, li, dd, blockquote)) { text-wrap: pretty; }
+:where([data-ink] :is(table, [data-ink-figures])) { font-variant-numeric: tabular-nums; }
+
+/* Opting out. Later and equal in weight, so it wins inside an inked page. */
+:where([data-ink="off"], [data-ink="off"] *) {
+  text-box: none;
+}

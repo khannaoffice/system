@@ -3,7 +3,7 @@ import assert from "node:assert/strict"
 import { readFileSync, existsSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
-import { parseConformance, parseAmendment } from "../../scripts/registry.mjs"
+import { parseConformance, parseAmendment, parseInk } from "../../scripts/registry.mjs"
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..")
 const read = (p) => readFileSync(join(root, p), "utf8")
@@ -32,6 +32,13 @@ test("A1-34.4 every requirement in amendment 0001 is registered before it is imp
   const actual = registry.entries.filter((e) => e.source === "Amendment 0001").map(({ id, text, phase }) => ({ id, text, phase }))
   assert.deepEqual(actual, amendment, "run `npm run registry` after changing amendment 0001")
   assert.ok(amendment.length >= 14, `amendment 0001 has ${amendment.length} registered requirements`)
+})
+
+test("every requirement in amendment 0002 is registered", () => {
+  const amendment = parseInk(read("spec/amendments/0002-ink.md")).map(({ id, text, phase }) => ({ id, text, phase }))
+  const actual = registry.entries.filter((e) => e.source === "Amendment 0002").map(({ id, text, phase }) => ({ id, text, phase }))
+  assert.deepEqual(actual, amendment, "run `npm run registry` after changing amendment 0002")
+  assert.equal(amendment.length, 12)
 })
 
 test("no requirement claims to pass without a test that exists", () => {

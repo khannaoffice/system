@@ -19,11 +19,11 @@ Publishing is an explicit, authorised operation. It makes one Git commit that ca
 | [`spec/SPEC.md`](spec/SPEC.md) | The foundational specification. |
 | [`spec/STATUS.md`](spec/STATUS.md) | The authority of each section (Established, Proposed or Experimental) and the phase that builds it. |
 | [`spec/STORAGE.md`](spec/STORAGE.md) | The storage contracts: the store, the write-state log, and published work in Git. |
-| [`spec/amendments/`](spec/amendments) | Amendment 0001, proposed against the specification: intent, cadence, Within and refusal. |
+| [`spec/amendments/`](spec/amendments) | Amendments proposed against the specification: 0001, intent, cadence, Within and refusal; 0002, Ink. |
 | [`packages/core/`](packages/core) | The System as pure functions with no dependencies. |
 | [`packages/state/`](packages/state) | Personal state and write state, kept on your device. |
 | [`packages/adapters/`](packages/adapters) | The Model Context Protocol, WebMCP and Git. |
-| [`packages/web/`](packages/web) | Approach and Whereabouts: the pointer's reading on each link, and moves between pages. |
+| [`packages/web/`](packages/web) | Approach, Whereabouts and Ink: the pointer's reading on each link, moves between pages, and type placed by its ink. |
 | [`schemas/`](schemas) | Twenty JSON Schemas (Draft 2020-12) for the System's records. |
 | [`fixtures/rohankhanna/`](fixtures/rohankhanna) | The register of rohankhanna.com, rebuilt from its public API, with the durations of its films and the sizes of its photographs. |
 | [`tests/conformance/`](tests/conformance) | The registry of every requirement, and the suites that prove them. |
@@ -61,6 +61,8 @@ A register is plain data: objects, relations, collections and revisions. [`fixtu
 | `@khannaoffice/system/web/approach` | Which link the pointer is going for, as `--near` on each one. |
 | `@khannaoffice/system/web/whereabouts` | Moves between pages, on View Transitions. |
 | `@khannaoffice/system/web/whereabouts.css` | The moves themselves, for you to tune. |
+| `@khannaoffice/system/web/ink.css` | Type placed by its capitals and baseline, with no script. |
+| `@khannaoffice/system/web/ink` | Every line of a heading on its ink edge, and each glyph on its face's stem. |
 | `@khannaoffice/system/schemas/<name>.schema.json` | One JSON Schema. |
 
 To keep the source in your own site, copy it there. The copy carries a header that names where each file came from, and `--check` exits with 1 when the copy has drifted.
@@ -110,7 +112,7 @@ The core is pure: it reads no clock, no network and no page. Time and identifier
 
 ## On the page
 
-The core is pure, so it never touches a page. The web part does, and it is small: two modules that bring the core's reading and its idea of place to a site.
+The core is pure, so it never touches a page. The web part does, and it is small: Approach and Whereabouts bring the core's reading and its idea of place to a site, and Ink sets its type.
 
 ### Approach
 
@@ -177,6 +179,35 @@ It is built on the web's own View Transitions, around whatever navigation a site
 
 The stylesheet holds the moves. Tune them with `--whereabouts-step`, `--whereabouts-slide`, `--whereabouts-zoom` and `--whereabouts-ease`. During a move, `<html>` carries `data-whereabouts` with the move's name, and each traveller carries `data-whereabouts-travelling`.
 
+### Ink
+
+Ink places type by what it draws, not by the box it came in. Since the first stylesheets, every line of text on the web has carried the font's room for accents above its capitals and for descenders below its baseline, plus half its leading on each side, and every padding, margin and alignment has been measured from that invisible box. Ask for 12 pixels of padding and the reader sees 17 to 19. Ink takes the box away.
+
+```html
+<html data-ink>
+```
+
+```js
+import "@khannaoffice/system/web/ink.css"
+import { ink } from "@khannaoffice/system/web/ink"
+
+const stop = ink()
+```
+
+- **Padding is padding.** A text block's box runs from its first line's capitals to its last line's baseline, so the space you set is the space a reader sees, and equal padding centres the capitals.
+- **Gaps are gaps.** The margin between two blocks is the gap between their ink, and line height is the distance from one baseline to the next.
+- **Any face, any metric.** `data-ink="ex"` trims to the x-height for lowercase settings. `data-ink-size="ex"` (or `"cap"`) makes every face below match the x-height of the face set there, fallbacks and code included, so one size means one size.
+- **Glyphs are type.** An icon marked `data-ink-glyph` stands on the baseline and reaches the capitals of whatever face it sits in. With the script, a stroked icon draws at that face's own stem, at that weight.
+- **The left edge is the ink.** An H starts 7.4 pixels inside its box at 96 pixels, a T none, an A overhangs. The script sets every line of a heading on its ink, and hangs an opening quote so the letter after it aligns. It reads each face from the canvas, so it needs no font files and works with any font the page has loaded.
+
+The stylesheet needs no script and adds no element. Every rule is wrapped in `:where()`, so any rule of your own wins, and `data-ink="off"` restores the box for an element and its contents. It trims p, h1 to h6, li, dt, dd, blockquote, figcaption, caption, th, td, label, legend, summary, button, pre and address; mark any other element that holds text directly with `data-ink-box`. Containers are left alone, so a child's own rule is never overruled and a line holding a button is never cut.
+
+The script never adds or splits a node, so it is safe under React and hydration. It moves a heading with `translate`, its first line with `text-indent`, and each later line with a zero-width float whose `shape-outside` gives that line its own inset. It measures each face and letter once, and runs again only when fonts load or a heading's width changes. `ink()` takes `selector` (headings and blockquotes inside `[data-ink]`, and anything marked `data-ink-edge`) and `root`, and returns a function that stops and puts every attribute back as it was. `data-ink-edge="first"` keeps an element to its first line.
+
+Two things to know. The CSS `font` shorthand resets `font-size-adjust`, so below `data-ink-size` set faces with `font-family` and `font-size`. And trimmed text that sits in a box which clips its overflow with no padding loses its descenders, as it would anywhere its ink leaves its box.
+
+Ink needs `text-box`, in Chrome 133, Safari 18.2 and Firefox 154. Older browsers show the web as it was. The amendment, [`spec/amendments/0002-ink.md`](spec/amendments/0002-ink.md), has the measurements, the engine floors and the mutation record.
+
 ## Run the tests
 
 The tests run TypeScript directly, so they need Node 22.18 or later.
@@ -189,9 +220,11 @@ npm run build
 npm run registry
 ```
 
-`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the web part, the schemas and the scan for network code. Of its 276 tests, 242 run on their own and 34 wait for a site. Read the result from the exit code.
+`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the web part, the schemas and the scan for network code. Of its 298 tests, 264 run on their own and 34 wait for a site. Ink's 12 measure in whichever browser engines launch. Read the result from the exit code.
 
-`npm run registry` rebuilds the requirement registry after a change to section 24 of the specification or to amendment 0001. A requirement is marked passing only when a test file that names it exists.
+`npm run registry` rebuilds the requirement registry after a change to section 24 of the specification or to an amendment. A requirement is marked passing only when a test file that names it exists.
+
+Ink is measured from pixels in real engines: `npm run test:ink` runs Chrome, WebKit and Firefox (`npx playwright install webkit firefox`, with Chrome installed). In `npm test` it measures in whichever engines launch, and skips where none do.
 
 The remaining suites drive a running site that has adopted the System. `SITE_URL` is its address. `SITE_REPO` is a folder with Playwright installed, and the browser suites use Chrome.
 

@@ -42,12 +42,18 @@
       "default": "./dist/web/src/whereabouts.js"
     },
     "./web/whereabouts.css": "./packages/web/whereabouts.css",
+    "./web/ink": {
+      "types": "./dist/web/src/ink.d.ts",
+      "default": "./dist/web/src/ink.js"
+    },
+    "./web/ink.css": "./packages/web/ink.css",
     "./schemas/*": "./schemas/*"
   },
   "files": [
     "dist",
     "schemas",
     "packages/web/whereabouts.css",
+    "packages/web/ink.css",
     "NOTICE"
   ],
   "publishConfig": {
@@ -68,6 +74,7 @@
     "registry": "node scripts/registry.mjs",
     "test": "node --test tests/conformance/*.test.mjs packages/core/test/*.test.ts packages/state/test/*.test.ts packages/adapters/mcp/test/*.test.ts packages/adapters/webmcp/test/*.test.ts packages/adapters/git/test/*.test.ts packages/web/test/*.test.ts",
     "test:browser": "node --test tests/conformance/browser.test.mjs",
+    "test:ink": "INK_ENGINES=chromium,webkit,firefox node --test tests/conformance/ink.test.mjs",
     "test:protocols": "node --test tests/conformance/parity-protocols.test.mjs",
     "test:bench": "node --test tests/conformance/test-bench.test.mjs",
     "test:parity": "node --test tests/conformance/parity-ledger.test.mjs",
@@ -80,6 +87,7 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "fake-indexeddb": "^6.2.7",
+    "playwright": "^1.65.1",
     "typescript": "5.7.3"
   },
   "keywords": [
@@ -92,6 +100,9 @@
     "specification",
     "conformance",
     "view-transitions",
-    "pointer"
+    "pointer",
+    "typography",
+    "text-box",
+    "optical-margin"
   ]
 }

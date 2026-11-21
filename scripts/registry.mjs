@@ -45,6 +45,16 @@ export function parseAmendment(markdown) {
   return out
 }
 
+export function parseInk(markdown) {
+  const out = []
+  for (const line of markdown.split("\n")) {
+    const m = line.match(/^(35)\.(\d+) (.+)$/)
+    if (!m) continue
+    out.push({ id: `A2-${m[1]}.${m[2]}`, group: m[1], source: "Amendment 0002", text: m[3].trim(), phase: 6, status: "pending", test: null, requires: null, note: null })
+  }
+  return out
+}
+
 const MANUAL = [
   { id: "T-1", group: "test bench", source: "rohankhanna.com /test", text: "The unlisted /test room, where the owner and an agent work together, is driven in a real browser as both: the read API and MCP, the agent's WebMCP tools, authority and approval bound to the change, Gather, notes and claims, position and return, handing work over and back, persistence and starting over, and that nothing moves when the agent acts.", phase: 6, status: "pending", test: null, requires: null, note: null },
   { id: "L-1", group: "Local-first", source: "Local-first", text: "The core, the state package and the git adapter have no network, database or authentication-provider code or dependency.", phase: 4, status: "pending", test: null, requires: null, note: null },
@@ -56,7 +66,8 @@ const MANUAL = [
 
 export function build() {
   const amendmentPath = join(root, "spec", "amendments", "0001-intent-cadence-within-refusal.md")
-  const fresh = [...parseConformance(readFileSync(specPath, "utf8")), ...parseAmendment(readFileSync(amendmentPath, "utf8")), ...MANUAL]
+  const inkPath = join(root, "spec", "amendments", "0002-ink.md")
+  const fresh = [...parseConformance(readFileSync(specPath, "utf8")), ...parseAmendment(readFileSync(amendmentPath, "utf8")), ...parseInk(readFileSync(inkPath, "utf8")), ...MANUAL]
   const previous = existsSync(registryPath) ? JSON.parse(readFileSync(registryPath, "utf8")) : { entries: [] }
   const byId = new Map(previous.entries.map((e) => [e.id, e]))
   return {
