@@ -181,7 +181,7 @@ The stylesheet holds the moves. Tune them with `--whereabouts-step`, `--whereabo
 
 ### Ink
 
-Ink places type by what it draws, not by the box it came in. Since the first stylesheets, every line of text on the web has carried the font's room for accents above its capitals and for descenders below its baseline, plus half its leading on each side, and every padding, border and alignment has been measured from that invisible box. Ask a button for 12 pixels of padding and the reader sees 17 to 19. Ink takes the box away where text meets something that is not text, and leaves the leading between lines of text, which is rhythm, alone. Nothing you have tuned moves.
+Ink places type by what it draws, not by the box it came in. Since the first stylesheets, every line of text on the web has carried the font's room for accents above its capitals and for descenders below its baseline, plus half its leading on each side, and every padding, border and alignment has been measured from that invisible box. Ask a button for 12 pixels of padding and the reader sees 17 to 19. Ink takes the box away where text meets something that is not text, and leaves the leading between lines of text, which is rhythm, alone. Spacing between text never moves. Text inside a frame does: padding that was tuned by eye around the box now means what it says, so framed text sits tighter until its padding is restated.
 
 ```html
 <html data-ink>
