@@ -750,6 +750,17 @@
       "note": "measured from pixels in chromium, webkit and firefox"
     },
     {
+      "id": "A2-35.13",
+      "group": "35",
+      "source": "Amendment 0002",
+      "text": "A list is trimmed as a whole: its items keep their leading between them, baseline to baseline, and only the list's first capitals and last baseline meet its edges.",
+      "phase": 6,
+      "status": "passing",
+      "test": "tests/conformance/ink.test.mjs",
+      "requires": "a browser engine (Playwright: Chrome, WebKit, Firefox)",
+      "note": "measured from pixels in chromium, webkit and firefox"
+    },
+    {
       "id": "T-1",
       "group": "test bench",
       "source": "rohankhanna.com /test",

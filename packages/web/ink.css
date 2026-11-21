@@ -17,9 +17,10 @@
  *          (or cap height) of the face set here, fallbacks and code included
  * Opt out: data-ink="off" on any element and its contents
  *
- * Trimmed: p, h1-h6, li, dt, dd, blockquote, figcaption, caption, th, td,
- * label, legend, summary, button, pre, address, and anything marked
- * data-ink-box. Containers are not, so a site's own rule on a child wins.
+ * Trimmed: p, h1-h6, ul, ol, dl, menu (as a whole: items keep their
+ * leading), blockquote, figcaption, caption, th, td, label, legend, summary,
+ * button, pre, address, and anything marked data-ink-box. Other containers
+ * are not, so a site's own rule on a child wins.
  *
  * Every rule is wrapped in :where(), so it weighs nothing against a site's
  * own CSS. Nothing here needs JavaScript; ink.ts adds the left edge.
@@ -37,9 +38,11 @@
    alone on purpose: a container's trim reaches into its first child's first
    line, so it would overrule the child's own rule, and it would cut any line
    whose tallest thing is a button or an image. Any other element that holds
-   text directly asks for it with data-ink-box. */
+   text directly asks for it with data-ink-box.
+   A list is trimmed as a whole, never item by item: its items are its lines,
+   and the space between them is their leading, as in a paragraph. */
 :where([data-ink]) :where(
-  p, h1, h2, h3, h4, h5, h6, li, dt, dd, blockquote, figcaption, caption,
+  p, h1, h2, h3, h4, h5, h6, ul, ol, dl, menu, blockquote, figcaption, caption,
   th, td, label, legend, summary, button, pre, address, [data-ink-box]
 ),
 :where([data-ink-box]) {

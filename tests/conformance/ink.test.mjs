@@ -283,3 +283,16 @@ test("A2-35.12 lighter than the web it replaces: no node for the vertical, and e
     await close()
   })
 })
+
+test("A2-35.13 a list keeps its leading between items, and only its outer edges are trimmed", { skip }, async (t) => {
+  await every(t, async (engine) => {
+    const items = ["HIEH", "HIE", "HIEHI", "HI", "HIEHIE"]
+    const { p, close } = await page(engine, `<style>#l a{color:#000;text-decoration:none}</style><ul id=l style="list-style:none;padding:0;margin:0;font:16px/24px 'Helvetica Neue',Arial">${items.map((x) => `<li><a href="#">${x}</a></li>`).join("")}</ul>`)
+    const ink = await inkOf(p, "#l", "dark", 4)
+    assert.equal(ink.bands.length, items.length, `${engine.name}: every item is its own line, none overlapping`)
+    for (let i = 1; i < items.length; i++) assert.ok(Math.abs(ink.bands[i].bottom - ink.bands[i - 1].bottom - 24) <= FLOOR[engine.name], `${engine.name}: item ${i} stands one line below the last`)
+    const box = await p.locator("#l").boundingBox()
+    assert.ok(Math.abs(ink.bands[0].top) <= FLOOR[engine.name] && Math.abs(box.height - ink.bands[items.length - 1].bottom) <= FLOOR[engine.name], `${engine.name}: the list's edges are its first capitals and last baseline`)
+    await close()
+  })
+})

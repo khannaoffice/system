@@ -38,7 +38,7 @@ test("every requirement in amendment 0002 is registered", () => {
   const amendment = parseInk(read("spec/amendments/0002-ink.md")).map(({ id, text, phase }) => ({ id, text, phase }))
   const actual = registry.entries.filter((e) => e.source === "Amendment 0002").map(({ id, text, phase }) => ({ id, text, phase }))
   assert.deepEqual(actual, amendment, "run `npm run registry` after changing amendment 0002")
-  assert.equal(amendment.length, 12)
+  assert.equal(amendment.length, 13)
 })
 
 test("no requirement claims to pass without a test that exists", () => {
