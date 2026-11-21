@@ -180,31 +180,63 @@ function canvasMeasure(): CanvasMeasure {
   return shared
 }
 
-/** Every line of `el`, with the text that starts it, by walking its text. */
+/**
+ * Every line of `el`, with the text that starts it. Each text run reports its
+ * line boxes at once (getClientRects), and the first letter of each later line
+ * is found by binary search, so a long heading costs a few measurements per
+ * line rather than one per letter.
+ */
 function linesOf(el: Element): { top: number; bottom: number; left: number; font: string; text: string }[] {
   const origin = el.getBoundingClientRect()
-  const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0
+  const padTop = (parseFloat(getComputedStyle(el).paddingTop) || 0) + (parseFloat(getComputedStyle(el).borderTopWidth) || 0)
   const out: { top: number; bottom: number; left: number; font: string; text: string }[] = []
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
   const range = document.createRange()
+  const charRect = (node: Text, i: number) => {
+    range.setStart(node, i)
+    range.setEnd(node, i + 1)
+    return range.getBoundingClientRect()
+  }
   let lastTop = -Infinity
   for (let node = walker.nextNode() as Text | null; node; node = walker.nextNode() as Text | null) {
     const text = node.data
-    for (let i = 0; i < text.length; i++) {
-      if (!text[i].trim()) continue
-      range.setStart(node, i)
-      range.setEnd(node, i + 1)
-      const r = range.getBoundingClientRect()
-      if (!r.height) continue
-      const top = r.top - origin.top - padTop
-      const bottom = r.bottom - origin.top - padTop
+    const first = text.search(/\S/)
+    if (first < 0) continue
+    range.selectNodeContents(node)
+    const boxes = [...range.getClientRects()].filter((r) => r.height > 0)
+    if (!boxes.length) continue
+    const font = fontOf(getComputedStyle(node.parentElement!))
+    // The top of each line this run reaches, in order.
+    const tops: number[] = []
+    for (const b of boxes) if (!tops.length || b.top > tops[tops.length - 1] + b.height / 2) tops.push(b.top)
+    let from = first
+    tops.forEach((top, k) => {
+      // The first non-space letter whose box stands on this line.
+      let lo = from
+      let hi = text.length - 1
+      if (k > 0) {
+        while (lo < hi) {
+          const mid = (lo + hi) >> 1
+          if (charRect(node!, mid).top >= top - 1) hi = mid
+          else lo = mid + 1
+        }
+      }
+      while (lo < text.length && !text[lo].trim()) lo++
+      if (lo >= text.length) return
+      const r = charRect(node!, lo)
+      from = lo
+      const t = r.top - origin.top - padTop
+      const b = r.bottom - origin.top - padTop
       if (r.top > lastTop + r.height / 2) {
-        out.push({ top, bottom, left: r.left, font: fontOf(getComputedStyle(node.parentElement!)), text: text.slice(i, i + 2) })
+        out.push({ top: t, bottom: b, left: r.left, font, text: text.slice(lo, lo + 2) })
         lastTop = r.top
       } else {
-        out[out.length - 1].bottom = Math.max(out[out.length - 1].bottom, bottom)
+        out[out.length - 1].bottom = Math.max(out[out.length - 1].bottom, b)
       }
-    }
+    })
+    // The run's last line may reach lower than its first letter.
+    const lastBox = boxes[boxes.length - 1]
+    if (out.length) out[out.length - 1].bottom = Math.max(out[out.length - 1].bottom, lastBox.bottom - origin.top - padTop)
   }
   return out
 }
@@ -246,56 +278,99 @@ function clear(el: HTMLElement) {
   original.delete(el)
 }
 
-/** Set one element on its ink edge. Exported for tests and for one-off use. */
-export function edge(el: HTMLElement, m: Measure = canvasMeasure()): Line[] {
-  ensureStyle()
-  clear(el)
-  const style = getComputedStyle(el)
-  if (style.direction !== "ltr" || !/^(start|left|justify)$/.test(style.textAlign)) return []
-  // A site's own ::before keeps the element to moving as a whole.
-  const free = el.getAttribute(EDGE) !== "first" && getComputedStyle(el, "::before").content === "none"
-  remember(el)
-  const box = el.getBoundingClientRect()
-  const target = box.left + (parseFloat(style.borderLeftWidth) || 0) + (parseFloat(style.paddingLeft) || 0)
-  const lineHeight = parseFloat(style.lineHeight)
-  let lines: Line[] = []
-  // A later line's edge can change where the lines break; settle in at most three passes.
-  for (let pass = 0; pass < 3; pass++) {
-    const found = linesOf(el).map((l) => ({ top: l.top, bottom: l.bottom, inset: inset(m, l.font, l.text) }))
-    const settled = pass > 0 && found.length === lines.length && found.every((l, i) => Math.abs(l.inset - lines[i].inset) < 0.25)
-    lines = found
-    if (!lines.length || settled) break
-    if (!free) {
-      apply(el, { shift: 0, indent: -lines[0].inset, float: null })
-      break
-    }
-    // Where the float's top stands differs by engine: try the content edge, then the first line box's top.
-    const first = lines[0]
-    const lineBoxTop = (first.top + first.bottom) / 2 - (isNaN(lineHeight) ? first.bottom - first.top : lineHeight) / 2
-    let placed = false
-    for (const origin of [0, lineBoxTop]) {
-      const at = place(lines, 0.25, origin)
-      apply(el, at, origin)
-      if (!at.float) { placed = true; break }
-      const landed = linesOf(el)
-      // Within a pixel: WebKit and Gecko set glyphs on whole pixels.
-      if (landed.length === lines.length && landed.every((l, i) => Math.abs(l.left + lines[i].inset - target) < 1)) { placed = true; break }
-    }
-    // An engine that sets the float some other way keeps the first-line edge only.
-    if (!placed) apply(el, { shift: 0, indent: -lines[0].inset, float: null })
-    if (!placed || !el.hasAttribute(SET) || el.getAttribute(SET) !== "lines") break
-  }
-  return lines
+interface Job {
+  el: HTMLElement
+  free: boolean
+  target: number
+  lineBoxTop: number
+  height: number
+  lines: Line[]
+  origins: number[]
+  origin: number
+  rebreaks: number
 }
 
-function apply(el: HTMLElement, at: Placement, origin = 0) {
+const firstLineOnly = (lines: Line[]): Placement => ({ shift: 0, indent: -lines[0].inset, float: null })
+
+/**
+ * Set many elements on their ink edge in one batch. Every write is done, then
+ * every read, so a page is laid out a few times per batch, not once or more
+ * per element.
+ */
+export function edges(els: HTMLElement[], m: Measure = canvasMeasure()): Map<HTMLElement, Line[]> {
+  const result = new Map<HTMLElement, Line[]>()
+  if (!els.length) return result
+  ensureStyle()
+  // Write: start from the box as the page drew it.
+  for (const el of els) clear(el)
+  // Read: everything each element needs.
+  let jobs: Job[] = []
+  for (const el of els) {
+    const style = getComputedStyle(el)
+    if (style.direction !== "ltr" || !/^(start|left|justify)$/.test(style.textAlign)) continue
+    const lines = linesOf(el).map((l) => ({ top: l.top, bottom: l.bottom, inset: inset(m, l.font, l.text) }))
+    if (!lines.length) continue
+    const box = el.getBoundingClientRect()
+    const lh = parseFloat(style.lineHeight)
+    const first = lines[0]
+    const lineBoxTop = (first.top + first.bottom) / 2 - (isNaN(lh) ? first.bottom - first.top : lh) / 2
+    // A site's own ::before keeps the element to its first-line edge.
+    const free = el.getAttribute(EDGE) !== "first" && getComputedStyle(el, "::before").content === "none"
+    const height = el.clientHeight - (parseFloat(style.paddingTop) || 0) - (parseFloat(style.paddingBottom) || 0)
+    const target = box.left + (parseFloat(style.borderLeftWidth) || 0) + (parseFloat(style.paddingLeft) || 0)
+    // Where a float's top stands differs by engine: the content edge, or the first line box's top.
+    jobs.push({ el, free, target, lineBoxTop, height, lines, origins: [0, lineBoxTop], origin: 0, rebreaks: 0 })
+    result.set(el, lines)
+  }
+  for (const job of jobs) remember(job.el)
+  // Up to four rounds of write-then-read; most elements settle in the first.
+  for (let round = 0; round < 4 && jobs.length; round++) {
+    for (const job of jobs) {
+      const at = job.free ? place(job.lines, 0.25, job.origin) : firstLineOnly(job.lines)
+      apply(job.el, at, job.origin, job.height)
+    }
+    const next: Job[] = []
+    for (const job of jobs) {
+      if (job.el.getAttribute(SET) !== "lines") continue
+      const landed = linesOf(job.el)
+      const same = landed.length === job.lines.length
+      if (same && landed.every((l, i) => Math.abs(l.left + job.lines[i].inset - job.target) < 1)) continue
+      if (!same && job.rebreaks < 1) {
+        // The new edges moved a line break: read the lines again and place them once more.
+        job.rebreaks++
+        job.lines = landed.map((l) => ({ top: l.top, bottom: l.bottom, inset: inset(m, l.font, l.text) }))
+        result.set(job.el, job.lines)
+        next.push(job)
+        continue
+      }
+      const tried = job.origins.indexOf(job.origin)
+      if (tried + 1 < job.origins.length) {
+        job.origin = job.origins[tried + 1]
+        next.push(job)
+      } else {
+        // An engine that sets the float some other way keeps the first-line edge only.
+        job.free = false
+        next.push(job)
+      }
+    }
+    jobs = next
+  }
+  return result
+}
+
+/** Set one element on its ink edge. */
+export function edge(el: HTMLElement, m: Measure = canvasMeasure()): Line[] {
+  return edges([el], m).get(el) ?? []
+}
+
+function apply(el: HTMLElement, at: Placement, origin: number, height: number) {
   el.style.setProperty("--ink-shift", px(at.shift))
   el.style.setProperty("--ink-indent", px(at.indent))
   if (at.float) {
     el.style.setProperty("--ink-reach", px(at.float.reach))
     el.style.setProperty("--ink-shape", at.float.polygon)
     // Never below the element's own lines: a float that hung out would push the next block's text.
-    el.style.setProperty("--ink-height", px(Math.min(at.float.height, contentHeight(el) - origin)))
+    el.style.setProperty("--ink-height", px(Math.min(at.float.height, height - origin)))
     el.setAttribute(SET, "lines")
   } else {
     for (const p of ["--ink-reach", "--ink-shape", "--ink-height"]) el.style.removeProperty(p)
@@ -303,51 +378,81 @@ function apply(el: HTMLElement, at: Placement, origin = 0) {
   }
 }
 
-function contentHeight(el: HTMLElement) {
-  const st = getComputedStyle(el)
-  return el.clientHeight - (parseFloat(st.paddingTop) || 0) - (parseFloat(st.paddingBottom) || 0)
-}
-
 /** Give a glyph the stem of the face it sits in, as `--ink-stem` in em. */
 export function stem(el: Element, m = canvasMeasure()): number {
   const s = m.stem(fontOf(getComputedStyle(el)))
   remember(el as HTMLElement)
-  ;(el as HTMLElement).style.setProperty("--ink-stem", `${Math.round(s * 10000) / 10000}em`)
-  el.setAttribute("data-ink-stem", "")
+  const value = `${Math.round(s * 10000) / 10000}em`
+  if ((el as HTMLElement).style.getPropertyValue("--ink-stem") !== value) (el as HTMLElement).style.setProperty("--ink-stem", value)
+  if (!el.hasAttribute("data-ink-stem")) el.setAttribute("data-ink-stem", "")
   return s
 }
 
 /* ------------------------------------------------------------- frames */
 
 const BLOCK = /^(block|flow-root|list-item|table-cell|table-caption|inline-block)$/
-const edgeOf = (s: CSSStyleDeclaration, side: "top" | "bottom") =>
-  (parseFloat(s.getPropertyValue(`padding-${side}`)) || 0) + (parseFloat(s.getPropertyValue(`border-${side}-width`)) || 0)
-
 const ATOM = /^(inline-block|inline-flex|inline-grid|inline-table)$/
-const REPLACED = new Set(["IMG", "SVG", "VIDEO", "CANVAS", "IFRAME", "INPUT", "BUTTON", "SELECT", "TEXTAREA", "OBJECT", "EMBED"])
-
-const isAtom = (el: Element) => {
-  if (el.hasAttribute(GLYPH) && el.getAttribute(GLYPH) !== "free") return false
-  const s = getComputedStyle(el)
-  if (s.display === "none" || s.position === "absolute" || s.position === "fixed") return false
-  return REPLACED.has(el.tagName.toUpperCase()) || ATOM.test(s.display)
-}
+const REPLACED_SELECTOR = "img, svg, video, canvas, iframe, input, button, select, textarea, object, embed"
+const REPLACED = new Set(REPLACED_SELECTOR.toUpperCase().split(", "))
 const INLINE = /^(inline|contents)$/
+const SPACE = /\S/
+
+/** What a pass needs to know of an element's style, each fact read once and only when asked. */
+interface Facts {
+  display: string
+  style: CSSStyleDeclaration
+  flow?: boolean
+  top?: number
+  bottom?: number
+}
+type Styles = (el: Element) => Facts
+const styleCache = (): Styles => {
+  const cache = new Map<Element, Facts>()
+  return (el) => {
+    let f = cache.get(el)
+    if (!f) {
+      const style = getComputedStyle(el)
+      cache.set(el, (f = { display: style.display, style }))
+    }
+    return f
+  }
+}
+/** Out of the flow of lines: hidden, positioned out, or floated. */
+const outOf = (f: Facts) => {
+  if (f.flow === undefined) {
+    const p = f.style.position
+    f.flow = !(f.display === "none" || p === "absolute" || p === "fixed" || f.style.float !== "none")
+  }
+  return !f.flow
+}
+const frameOf = (f: Facts, side: "top" | "bottom") => {
+  if (f[side] === undefined) {
+    const s = f.style
+    f[side] = (parseFloat(s.getPropertyValue(`padding-${side}`)) || 0) + (parseFloat(s.getPropertyValue(`border-${side}-width`)) || 0)
+  }
+  return f[side]!
+}
+
+const isAtom = (el: Element, st: Styles) => {
+  if (el.hasAttribute(GLYPH) && el.getAttribute(GLYPH) !== "free") return false
+  const f = st(el)
+  if (f.display === "none" || (outOf(f) && f.style.float === "none")) return false
+  return REPLACED.has(el.tagName.toUpperCase()) || ATOM.test(f.display)
+}
 
 /** The element whose own lines are `el`'s first (or last) line: descend while that line belongs to a child block. */
-function lineHolder(el: Element, end: "first" | "last"): Element {
-  const nodes = [...el.childNodes]
-  if (end === "last") nodes.reverse()
-  for (const node of nodes) {
-    if (node.nodeType === 3) {
-      if ((node as Text).data.trim()) return el
+function lineHolder(el: Element, end: "first" | "last", st: Styles): Element {
+  const step = (n: ChildNode) => (end === "first" ? n.nextSibling : n.previousSibling)
+  for (let n: ChildNode | null = end === "first" ? el.firstChild : el.lastChild; n; n = step(n!)) {
+    if (n.nodeType === 3) {
+      if (SPACE.test((n as Text).data)) return el
       continue
     }
-    if (node.nodeType !== 1) continue
-    const s = getComputedStyle(node as Element)
-    if (s.display === "none" || s.position === "absolute" || s.position === "fixed" || s.float !== "none") continue
-    if (INLINE.test(s.display) || isAtom(node as Element)) return el
-    return lineHolder(node as Element, end)
+    if (n.nodeType !== 1) continue
+    const f = st(n as Element)
+    if (outOf(f)) continue
+    if (INLINE.test(f.display) || isAtom(n as Element, st)) return el
+    return lineHolder(n as Element, end, st)
   }
   return el
 }
@@ -357,19 +462,22 @@ function lineHolder(el: Element, end: "first" | "last"): Element {
  * image, a control, an inline-block, anywhere on that line. Trimming it at the
  * capitals or the baseline would cut the box, so that edge keeps its leading.
  */
-function atomAt(el: Element, end: "first" | "last"): boolean {
-  const holder = lineHolder(el, end)
-  const atoms = [...holder.querySelectorAll("*")].filter(isAtom)
+function atomAt(el: Element, end: "first" | "last", st: Styles): boolean {
+  const holder = lineHolder(el, end, st)
+  // Plain text, the common case, holds no box at all.
+  if (!holder.firstElementChild) return false
+  const atoms: Element[] = []
+  for (const child of holder.querySelectorAll("*")) if (isAtom(child, st)) atoms.push(child)
   if (!atoms.length) return false
   const walker = document.createTreeWalker(holder, NodeFilter.SHOW_TEXT)
   let text: Text | null = null
   for (let n = walker.nextNode() as Text | null; n; n = walker.nextNode() as Text | null) {
-    if (!n.data.trim()) continue
+    if (!SPACE.test(n.data)) continue
     text = n
     if (end === "first") break
   }
   if (!text) return true
-  const at = end === "first" ? text.data.search(/\S/) : text.data.trimEnd().length - 1
+  const at = end === "first" ? text.data.search(SPACE) : text.data.trimEnd().length - 1
   const range = document.createRange()
   range.setStart(text, at)
   range.setEnd(text, at + 1)
@@ -380,86 +488,165 @@ function atomAt(el: Element, end: "first" | "last"): boolean {
   })
 }
 
+/** Whether `child` is the first (or last) thing in its parent's flow: nothing but space or out-of-flow boxes before (after) it. */
+function atEdgeOf(child: Element, end: "first" | "last", st: Styles): boolean {
+  const step = (n: ChildNode) => (end === "first" ? n.previousSibling : n.nextSibling)
+  for (let n: ChildNode | null = step(child); n; n = step(n!)) {
+    if (n.nodeType === 3) {
+      if (SPACE.test((n as Text).data)) return false
+      continue
+    }
+    if (n.nodeType !== 1) continue
+    if (!outOf(st(n as Element))) return false
+  }
+  return true
+}
+
 /**
- * Mark every edge where text meets a frame, from the real layout: a block
- * container with padding or a border on a side trims that side (the trim
- * reaches its first or last line); a flex or grid container with one passes it
- * to each item standing on that edge, so text side by side trims together.
- * Returns the number of elements marked.
+ * Mark every edge where text meets a frame, from the real layout. The walk
+ * starts from the text, not the elements: from each block holding text it
+ * climbs while that text is first (or last) in its parent, until it meets
+ * padding or a border. A block container there trims that side (the trim
+ * reaches its first or last line); an item of a flex or grid container whose
+ * edge is framed trims the side it stands on, so text side by side trims
+ * together whatever holds it. Elements with no text at an edge are never
+ * visited, and a climb stops where an earlier one already went. Returns the
+ * number of elements marked.
  */
 export function frames(root: ParentNode = document): number {
-  const want = new Map<HTMLElement, Set<"start" | "end">>()
-  const mark = (el: HTMLElement, side: "start" | "end") => {
-    if (!want.has(el)) want.set(el, new Set())
-    want.get(el)!.add(side)
+  const walk = framer(root)
+  walk.step(Infinity)
+  walk.finish()
+  return walk.count()
+}
+
+/**
+ * The same walk, resumable: `step` goes on through the text in document order
+ * until a time budget is spent or the text lies `below` a point on screen, and
+ * writes what it found; `finish` clears marks the walk did not find again.
+ * ink() runs the walk to a screen past the viewport at once, and the rest in
+ * idle slices, so a long page is never set in one long task.
+ */
+export function framer(root: ParentNode = document) {
+  const st = styleCache()
+  const marks = new Map<HTMLElement, Set<"start" | "end">>()
+  const fresh = new Set<HTMLElement>()
+  const mark = (el: Element, side: "start" | "end") => {
+    const h = el as HTMLElement
+    if (!marks.has(h)) marks.set(h, new Set())
+    marks.get(h)!.add(side)
+    fresh.add(h)
   }
-  for (const el of root.querySelectorAll<HTMLElement>("[data-ink], [data-ink] *")) {
-    const s = getComputedStyle(el)
-    if (s.display === "none" || s.display === "contents" || (s.display.startsWith("inline") && s.display !== "inline-block")) continue
-    const top = edgeOf(s, "top") > 0
-    const bottom = edgeOf(s, "bottom") > 0
-    if (!top && !bottom) continue
-    if (BLOCK.test(s.display)) {
-      if (top && !atomAt(el, "first")) mark(el, "start")
-      if (bottom && !atomAt(el, "last")) mark(el, "end")
-    } else if (/flex|grid/.test(s.display)) {
-      const box = el.getBoundingClientRect()
-      const innerTop = box.top + edgeOf(s, "top")
-      const innerBottom = box.bottom - edgeOf(s, "bottom")
-      for (const child of el.children) {
-        const c = child as HTMLElement
-        const cs = getComputedStyle(c)
-        if (!BLOCK.test(cs.display)) continue
-        const r = c.getBoundingClientRect()
-        if (top && Math.abs(r.top - (parseFloat(cs.marginTop) || 0) - innerTop) < 1 && !atomAt(c, "first")) mark(c, "start")
-        if (bottom && Math.abs(r.bottom + (parseFloat(cs.marginBottom) || 0) - innerBottom) < 1 && !atomAt(c, "last")) mark(c, "end")
+  const scope = root === document ? document.body : (root as Node)
+  const off = [...(root as ParentNode).querySelectorAll('[data-ink="off"]')]
+  const inScope = (el: Element) => !!el.closest("[data-ink]") && !off.some((o) => o.contains(el))
+  const holders = new Set<Element>()
+  const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT)
+  const seen = { first: new Set<Element>(), last: new Set<Element>() }
+  const climb = (start: Element, end: "first" | "last") => {
+    const side = end === "first" ? "start" : "end"
+    const edgeSide = end === "first" ? "top" : "bottom"
+    let cur: Element = start
+    for (;;) {
+      if (seen[end].has(cur)) return
+      seen[end].add(cur)
+      const f = st(cur)
+      if (f.display === "none") return
+      if (frameOf(f, edgeSide) > 0) {
+        if (BLOCK.test(f.display) && !atomAt(cur, end, st)) mark(cur, side)
+        return
       }
+      const parent = cur.parentElement
+      if (!parent || parent === document.documentElement) return
+      const pf = st(parent)
+      if (pf.display.includes("flex") || pf.display.includes("grid")) {
+        if (frameOf(pf, edgeSide) > 0 && BLOCK.test(f.display)) {
+          const box = parent.getBoundingClientRect()
+          const r = cur.getBoundingClientRect()
+          const stands = end === "first"
+            ? Math.abs(r.top - (parseFloat(f.style.marginTop) || 0) - (box.top + frameOf(pf, "top"))) < 1
+            : Math.abs(r.bottom + (parseFloat(f.style.marginBottom) || 0) - (box.bottom - frameOf(pf, "bottom"))) < 1
+          if (stands && !atomAt(cur, end, st)) mark(cur, side)
+        }
+        return
+      }
+      if (!atEdgeOf(cur, end, st)) return
+      cur = parent
     }
   }
-  for (const el of root.querySelectorAll<HTMLElement>("[data-ink-trim]")) if (!want.has(el)) el.removeAttribute("data-ink-trim")
-  for (const [el, sides] of want) {
-    const value = sides.size === 2 ? "both" : [...sides][0]
-    if (el.getAttribute("data-ink-trim") !== value) el.setAttribute("data-ink-trim", value)
+  const flush = () => {
+    for (const el of fresh) {
+      const sides = marks.get(el)!
+      const value = sides.size === 2 ? "both" : [...sides][0]
+      if (el.getAttribute("data-ink-trim") !== value) el.setAttribute("data-ink-trim", value)
+    }
+    fresh.clear()
   }
-  return want.size
+  let complete = false
+  return {
+    /** Walk on; true once every text on the page has been read. */
+    step(budget: number, below = Infinity): boolean {
+      if (complete) return true
+      const t0 = performance.now()
+      let k = 0
+      for (let n = walker.nextNode() as Text | null; n; n = walker.nextNode() as Text | null) {
+        if (!SPACE.test(n.data)) continue
+        let el = n.parentElement
+        while (el && INLINE.test(st(el).display)) el = el.parentElement
+        if (!el || holders.has(el)) continue
+        holders.add(el)
+        if (inScope(el)) {
+          climb(el, "first")
+          climb(el, "last")
+        }
+        if ((++k & 15) === 0 && (performance.now() - t0 > budget || (below < Infinity && el.getBoundingClientRect().top > below))) {
+          flush()
+          return false
+        }
+      }
+      flush()
+      complete = true
+      return true
+    },
+    /** Clear the marks this walk did not find again. */
+    finish() {
+      for (const el of (root as ParentNode).querySelectorAll<HTMLElement>("[data-ink-trim]")) if (!marks.has(el)) el.removeAttribute("data-ink-trim")
+    },
+    count: () => marks.size,
+  }
 }
 
 export interface InkOptions {
   selector?: string
   root?: ParentNode
+  /** How far beyond the screen a heading is set ahead of time, as a CSS margin. Default: one screen. */
+  ahead?: string
 }
 
 /**
  * Set every heading on its ink edge and every glyph on its face's stem, and
- * keep them there as fonts load and widths change. Returns a function that
- * stops and puts everything back.
+ * keep them there as fonts load, widths change and content changes. Headings
+ * on or near the screen are set at once; the rest as they come within a
+ * screen of it. Returns a function that stops and puts everything back.
  */
 export function ink(options: InkOptions = {}): () => void {
   const selector = options.selector ?? DEFAULT_SELECTOR
   const root = options.root ?? document
   const m = canvasMeasure()
-  const run = () => {
-    // WebKit re-resolves `from-font` on every element instead of inheriting the
-    // number, so state the number where data-ink-size is set.
-    root.querySelectorAll<HTMLElement>("[data-ink-size]").forEach((el) => {
-      remember(el)
-      el.style.removeProperty("font-size-adjust")
-      const metric = el.getAttribute("data-ink-size") === "cap" ? "cap-height" : "ex-height"
-      const value = parseFloat(getComputedStyle(el).fontSizeAdjust.replace(/^[a-z-]+\s+/, ""))
-      if (!isNaN(value)) el.style.setProperty("font-size-adjust", `${metric} ${value}`)
-      el.setAttribute("data-ink-sized", "")
-    })
-    frames(root)
-    root.querySelectorAll<HTMLElement>(selector).forEach((el) => edge(el, m))
-    root.querySelectorAll(`[${GLYPH}]`).forEach((el) => stem(el, m))
-  }
-  let frame = 0
-  const soon = () => {
-    cancelAnimationFrame(frame)
-    frame = requestAnimationFrame(run)
-  }
-  run()
-  document.fonts?.addEventListener("loadingdone", soon)
+  const dirty = new Set<HTMLElement>()
+  const near = new Set<Element>()
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) near.add(e.target)
+        else near.delete(e.target)
+      }
+      const ready = [...dirty].filter((el) => near.has(el))
+      for (const el of ready) dirty.delete(el)
+      edges(ready, m)
+    },
+    { rootMargin: options.ahead ?? "100% 0px 100% 0px" },
+  )
   const widths = new WeakMap<Element, number>()
   const resize = new ResizeObserver((entries) => {
     // Only a change of width moves line breaks; the first report is the width we already set for.
@@ -471,20 +658,70 @@ export function ink(options: InkOptions = {}): () => void {
     }
     if (moved) soon()
   })
-  root.querySelectorAll(selector).forEach((el) => resize.observe(el))
-  // Pages that change (client navigation, new content) are read again; our own
+  const run = () => {
+    // WebKit re-resolves `from-font` on every element instead of inheriting the
+    // number, so state the number where data-ink-size is set.
+    root.querySelectorAll<HTMLElement>("[data-ink-size]").forEach((el) => {
+      remember(el)
+      el.style.removeProperty("font-size-adjust")
+      const metric = el.getAttribute("data-ink-size") === "cap" ? "cap-height" : "ex-height"
+      const value = parseFloat(getComputedStyle(el).fontSizeAdjust.replace(/^[a-z-]+\s+/, ""))
+      if (!isNaN(value)) el.style.setProperty("font-size-adjust", `${metric} ${value}`)
+      el.setAttribute("data-ink-sized", "")
+    })
+    // Frames: to a screen past the viewport now, the rest in idle slices.
+    cancelIdle()
+    walk = framer(root)
+    if (walk.step(Infinity, window.innerHeight * 2)) {
+      walk.finish()
+      walk = null
+    } else idle = later(goOn)
+    const heads = [...root.querySelectorAll<HTMLElement>(selector)]
+    const vh = window.innerHeight
+    const now: HTMLElement[] = []
+    for (const h of heads) {
+      io.observe(h)
+      resize.observe(h)
+      const r = h.getBoundingClientRect()
+      if (r.bottom > -vh && r.top < 2 * vh) now.push(h)
+      else dirty.add(h)
+    }
+    edges(now, m)
+    root.querySelectorAll(`[${GLYPH}]`).forEach((el) => stem(el, m))
+  }
+  let walk: ReturnType<typeof framer> | null = null
+  let idle = 0
+  const hasIdle = typeof requestIdleCallback === "function"
+  const later = (fn: () => void) => (hasIdle ? requestIdleCallback(fn, { timeout: 200 }) : (setTimeout(fn, 16) as unknown as number))
+  const cancelIdle = () => (hasIdle ? cancelIdleCallback(idle) : clearTimeout(idle))
+  const SLICE = 4
+  const goOn = () => {
+    if (!walk) return
+    if (walk.step(SLICE)) {
+      walk.finish()
+      walk = null
+    } else idle = later(goOn)
+  }
+  let frame = 0
+  const soon = () => {
+    cancelAnimationFrame(frame)
+    frame = requestAnimationFrame(run)
+  }
+  run()
+  document.fonts?.addEventListener("loadingdone", soon)
+  // Pages that change (client navigation, new content) are read again. Ink's own
   // writes are attributes, which this does not watch, so it cannot loop.
-  const changes = new MutationObserver(() => {
-    root.querySelectorAll(selector).forEach((el) => resize.observe(el))
-    soon()
-  })
+  const changes = new MutationObserver(soon)
   changes.observe(root === document ? document.body : (root as Node), { childList: true, subtree: true, characterData: true })
   return () => {
     cancelAnimationFrame(frame)
+    cancelIdle()
+    walk = null
+    io.disconnect()
     resize.disconnect()
     changes.disconnect()
-    root.querySelectorAll<HTMLElement>("[data-ink-trim]").forEach((el) => el.removeAttribute("data-ink-trim"))
     document.fonts?.removeEventListener("loadingdone", soon)
+    root.querySelectorAll<HTMLElement>("[data-ink-trim]").forEach((el) => el.removeAttribute("data-ink-trim"))
     root.querySelectorAll<HTMLElement>(`${selector}, [data-ink-stem], [data-ink-sized]`).forEach((el) => {
       if (el.hasAttribute("data-ink-sized")) {
         el.style.removeProperty("font-size-adjust")

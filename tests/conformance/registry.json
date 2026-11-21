@@ -772,6 +772,17 @@
       "note": "measured from pixels in chromium, webkit and firefox"
     },
     {
+      "id": "A2-35.15",
+      "group": "35",
+      "source": "Amendment 0002",
+      "text": "Ink is fast: on a page of 6,000 elements its first run, layout included, takes under 8 milliseconds; the rest finishes in idle slices without a long task; and the sliced walk marks exactly what one full walk marks.",
+      "phase": 6,
+      "status": "passing",
+      "test": "tests/conformance/ink.test.mjs",
+      "requires": "a browser engine (Playwright: Chrome, WebKit, Firefox)",
+      "note": "measured from pixels in chromium, webkit and firefox"
+    },
+    {
       "id": "T-1",
       "group": "test bench",
       "source": "rohankhanna.com /test",

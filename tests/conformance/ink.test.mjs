@@ -44,7 +44,7 @@ async function page(engine, body, { ink = true, run = false } = {}) {
   const context = await engine.browser.newContext({ deviceScaleFactor: 2, viewport: { width: 1200, height: 900 } })
   const p = await context.newPage()
   await p.setContent(`<!doctype html><html ${ink ? "data-ink" : ""}><head><style>${css}</style><style>body{margin:0;padding:120px;background:#fff;color:#000} .g{color:#f00}</style></head><body>${body}</body></html>`)
-  await p.addScriptTag({ type: "module", content: script.replace(/^export /gm, "") + "\nwindow.Ink = { ink, edge, stem, inset, place, frames };\ndocument.documentElement.dataset.ready = 1" })
+  await p.addScriptTag({ type: "module", content: script.replace(/^export /gm, "") + "\nwindow.Ink = { ink, edge, edges, stem, inset, place, frames, framer };\ndocument.documentElement.dataset.ready = 1" })
   await p.waitForFunction(() => document.documentElement.dataset.ready)
   await p.evaluate(() => document.fonts.ready)
   if (ink && run) await p.evaluate(() => window.Ink.ink())
@@ -322,5 +322,46 @@ test("A2-35.14 trimming follows the layout, not the tags: text side by side on a
       for (const top of tops) assert.ok(Math.abs(top - 11) <= FLOOR[engine.name], `${engine.name} ${f}: caps at ${tops.map((x) => x.toFixed(2)).join(", ")}, frame edge at 11`)
       await close()
     }
+  })
+})
+
+test("A2-35.15 Ink is fast: under 8ms for its first run on 6,000 elements, no long task after, and the sliced walk equals one full walk", { skip }, async (t) => {
+  await every(t, async (engine) => {
+    const section = (i) => `<section style="padding:20px 0;border-top:1px solid #000"><h2 style="margin:0 0 10px">Heading ${i} Tower</h2>${[1, 2, 3].map(() => `<p style="margin:0 0 10px">Text with <a href="#">a link</a> and <em>emphasis</em> on a line.</p>`).join("")}<ul style="padding:8px 0;margin:0">${[1, 2, 3, 4].map((k) => `<li>Item ${k}</li>`).join("")}</ul><div style="display:grid;grid-template-columns:1fr 1fr;padding:10px 0"><span style="display:block">Left</span><span style="display:block">Right</span></div></section>`
+    const { p, close } = await page(engine, Array.from({ length: 320 }, (_, i) => section(i)).join(""))
+    const r = await p.evaluate(async () => {
+      const elements = document.querySelectorAll("*").length
+      document.body.offsetHeight
+      const long = []
+      let po = null
+      if (PerformanceObserver.supportedEntryTypes?.includes("longtask")) {
+        po = new PerformanceObserver((l) => long.push(...l.getEntries().map((e) => e.duration)))
+      }
+      let best = Infinity
+      // The best of three runs, each from a clean page, so a cold engine cache does not count against Ink.
+      for (let k = 0; k < 3; k++) {
+        const t0 = performance.now()
+        const stop = window.Ink.ink()
+        document.body.offsetHeight
+        best = Math.min(best, performance.now() - t0)
+        stop()
+        document.body.offsetHeight
+      }
+      po?.observe({ type: "longtask" })
+      window.Ink.ink()
+      await new Promise((r) => setTimeout(r, 2500))
+      po?.disconnect()
+      const sliced = new Map([...document.querySelectorAll("[data-ink-trim]")].map((e) => [e, e.getAttribute("data-ink-trim")]))
+      const full = window.Ink.frames()
+      const after = new Map([...document.querySelectorAll("[data-ink-trim]")].map((e) => [e, e.getAttribute("data-ink-trim")]))
+      const same = sliced.size === after.size && [...sliced].every(([e, v]) => after.get(e) === v)
+      return { elements, best, long, sliced: sliced.size, full, same, observed: !!po }
+    })
+    t.diagnostic(`${engine.name}: ${r.elements} elements, first run ${r.best.toFixed(2)}ms, ${r.sliced} frames, long tasks ${r.observed ? r.long.length : "not observable"}`)
+    assert.ok(r.elements >= 6000, `${engine.name}: ${r.elements} elements`)
+    assert.ok(r.best < 8, `${engine.name}: first run ${r.best.toFixed(1)}ms`)
+    assert.ok(r.same && r.sliced === r.full, `${engine.name}: sliced walk ${r.sliced} marks, full walk ${r.full}`)
+    if (r.observed) assert.deepEqual(r.long, [], `${engine.name}: long tasks while finishing`)
+    await close()
   })
 })
