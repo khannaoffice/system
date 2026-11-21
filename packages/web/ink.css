@@ -2,9 +2,9 @@
  * Ink. Type is placed and sized by what it draws, not by the box it came in.
  *
  * Put `data-ink` on <html> (or on any container). Inside it:
- *   - a text block's box runs from its first line's capitals to its last
- *     line's baseline, so padding and margins are the space a reader sees
- *   - line-height is the distance from one baseline to the next
+ *   - where text meets a frame (padding, a border), the frame's padding is
+ *     the space a reader sees, from the capitals and to the baseline
+ *   - between lines of text nothing changes: leading is rhythm
  *   - a glyph (an icon) marked `data-ink-glyph` stands on the baseline and
  *     reaches the capitals, in any face, at any size
  *   - media never leaves descender space under it, and never pokes out of a
@@ -17,10 +17,9 @@
  *          (or cap height) of the face set here, fallbacks and code included
  * Opt out: data-ink="off" on any element and its contents
  *
- * Trimmed: p, h1-h6, ul, ol, dl, menu (as a whole: items keep their
- * leading), blockquote, figcaption, caption, th, td, label, legend, summary,
- * button, pre, address, and anything marked data-ink-box. Other containers
- * are not, so a site's own rule on a child wins.
+ * Trimmed: only where text meets a frame (an element's own padding or
+ * border), marked from the real layout by ink.ts; plain text keeps its
+ * leading. data-ink-box trims an element outright.
  *
  * Every rule is wrapped in :where(), so it weighs nothing against a site's
  * own CSS. Nothing here needs JavaScript; ink.ts adds the left edge.
@@ -34,19 +33,22 @@
 :where([data-ink="text"]) { --ink-over: text; --ink-under: text; }
 :where([data-ink]:lang(ja, zh, ko, yue)) { --ink-over: text; --ink-under: text; }
 
-/* The trim, on the elements that carry lines of text. Containers are left
-   alone on purpose: a container's trim reaches into its first child's first
-   line, so it would overrule the child's own rule, and it would cut any line
-   whose tallest thing is a button or an image. Any other element that holds
-   text directly asks for it with data-ink-box.
-   A list is trimmed as a whole, never item by item: its items are its lines,
-   and the space between them is their leading, as in a paragraph. */
-:where([data-ink]) :where(
-  p, h1, h2, h3, h4, h5, h6, ul, ol, dl, menu, blockquote, figcaption, caption,
-  th, td, label, legend, summary, button, pre, address, [data-ink-box]
-),
+/* The trim, only where text meets a frame. Leading between lines of text is
+   rhythm, and Ink leaves it alone; the invisible box is only wrong where text
+   meets something that is not text: an element's own padding or border. The
+   script (ink.ts, frames()) reads the real layout and marks those edges, so
+   the decision follows what is drawn, not which tag holds the text: text side
+   by side at the top of a framed row trims together, whatever holds it.
+   data-ink-box trims both edges of an element outright. */
+:where([data-ink]) :where([data-ink-trim="both"], [data-ink-box]),
 :where([data-ink-box]) {
   text-box: trim-both var(--ink-over) var(--ink-under);
+}
+:where([data-ink]) :where([data-ink-trim="start"]) {
+  text-box: trim-start var(--ink-over) var(--ink-under);
+}
+:where([data-ink]) :where([data-ink-trim="end"]) {
+  text-box: trim-end var(--ink-over) var(--ink-under);
 }
 
 /* A line whose tallest thing is not text would be cut at the capitals and

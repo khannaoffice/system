@@ -317,6 +317,113 @@ export function stem(el: Element, m = canvasMeasure()): number {
   return s
 }
 
+/* ------------------------------------------------------------- frames */
+
+const BLOCK = /^(block|flow-root|list-item|table-cell|table-caption|inline-block)$/
+const edgeOf = (s: CSSStyleDeclaration, side: "top" | "bottom") =>
+  (parseFloat(s.getPropertyValue(`padding-${side}`)) || 0) + (parseFloat(s.getPropertyValue(`border-${side}-width`)) || 0)
+
+const ATOM = /^(inline-block|inline-flex|inline-grid|inline-table)$/
+const REPLACED = new Set(["IMG", "SVG", "VIDEO", "CANVAS", "IFRAME", "INPUT", "BUTTON", "SELECT", "TEXTAREA", "OBJECT", "EMBED"])
+
+const isAtom = (el: Element) => {
+  if (el.hasAttribute(GLYPH) && el.getAttribute(GLYPH) !== "free") return false
+  const s = getComputedStyle(el)
+  if (s.display === "none" || s.position === "absolute" || s.position === "fixed") return false
+  return REPLACED.has(el.tagName.toUpperCase()) || ATOM.test(s.display)
+}
+const INLINE = /^(inline|contents)$/
+
+/** The element whose own lines are `el`'s first (or last) line: descend while that line belongs to a child block. */
+function lineHolder(el: Element, end: "first" | "last"): Element {
+  const nodes = [...el.childNodes]
+  if (end === "last") nodes.reverse()
+  for (const node of nodes) {
+    if (node.nodeType === 3) {
+      if ((node as Text).data.trim()) return el
+      continue
+    }
+    if (node.nodeType !== 1) continue
+    const s = getComputedStyle(node as Element)
+    if (s.display === "none" || s.position === "absolute" || s.position === "fixed" || s.float !== "none") continue
+    if (INLINE.test(s.display) || isAtom(node as Element)) return el
+    return lineHolder(node as Element, end)
+  }
+  return el
+}
+
+/**
+ * Whether the line at this end of `el` holds a box rather than only text: an
+ * image, a control, an inline-block, anywhere on that line. Trimming it at the
+ * capitals or the baseline would cut the box, so that edge keeps its leading.
+ */
+function atomAt(el: Element, end: "first" | "last"): boolean {
+  const holder = lineHolder(el, end)
+  const atoms = [...holder.querySelectorAll("*")].filter(isAtom)
+  if (!atoms.length) return false
+  const walker = document.createTreeWalker(holder, NodeFilter.SHOW_TEXT)
+  let text: Text | null = null
+  for (let n = walker.nextNode() as Text | null; n; n = walker.nextNode() as Text | null) {
+    if (!n.data.trim()) continue
+    text = n
+    if (end === "first") break
+  }
+  if (!text) return true
+  const at = end === "first" ? text.data.search(/\S/) : text.data.trimEnd().length - 1
+  const range = document.createRange()
+  range.setStart(text, at)
+  range.setEnd(text, at + 1)
+  const line = range.getBoundingClientRect()
+  return atoms.some((a) => {
+    const r = a.getBoundingClientRect()
+    return r.bottom > line.top && r.top < line.bottom
+  })
+}
+
+/**
+ * Mark every edge where text meets a frame, from the real layout: a block
+ * container with padding or a border on a side trims that side (the trim
+ * reaches its first or last line); a flex or grid container with one passes it
+ * to each item standing on that edge, so text side by side trims together.
+ * Returns the number of elements marked.
+ */
+export function frames(root: ParentNode = document): number {
+  const want = new Map<HTMLElement, Set<"start" | "end">>()
+  const mark = (el: HTMLElement, side: "start" | "end") => {
+    if (!want.has(el)) want.set(el, new Set())
+    want.get(el)!.add(side)
+  }
+  for (const el of root.querySelectorAll<HTMLElement>("[data-ink], [data-ink] *")) {
+    const s = getComputedStyle(el)
+    if (s.display === "none" || s.display === "contents" || (s.display.startsWith("inline") && s.display !== "inline-block")) continue
+    const top = edgeOf(s, "top") > 0
+    const bottom = edgeOf(s, "bottom") > 0
+    if (!top && !bottom) continue
+    if (BLOCK.test(s.display)) {
+      if (top && !atomAt(el, "first")) mark(el, "start")
+      if (bottom && !atomAt(el, "last")) mark(el, "end")
+    } else if (/flex|grid/.test(s.display)) {
+      const box = el.getBoundingClientRect()
+      const innerTop = box.top + edgeOf(s, "top")
+      const innerBottom = box.bottom - edgeOf(s, "bottom")
+      for (const child of el.children) {
+        const c = child as HTMLElement
+        const cs = getComputedStyle(c)
+        if (!BLOCK.test(cs.display)) continue
+        const r = c.getBoundingClientRect()
+        if (top && Math.abs(r.top - (parseFloat(cs.marginTop) || 0) - innerTop) < 1 && !atomAt(c, "first")) mark(c, "start")
+        if (bottom && Math.abs(r.bottom + (parseFloat(cs.marginBottom) || 0) - innerBottom) < 1 && !atomAt(c, "last")) mark(c, "end")
+      }
+    }
+  }
+  for (const el of root.querySelectorAll<HTMLElement>("[data-ink-trim]")) if (!want.has(el)) el.removeAttribute("data-ink-trim")
+  for (const [el, sides] of want) {
+    const value = sides.size === 2 ? "both" : [...sides][0]
+    if (el.getAttribute("data-ink-trim") !== value) el.setAttribute("data-ink-trim", value)
+  }
+  return want.size
+}
+
 export interface InkOptions {
   selector?: string
   root?: ParentNode
@@ -342,6 +449,7 @@ export function ink(options: InkOptions = {}): () => void {
       if (!isNaN(value)) el.style.setProperty("font-size-adjust", `${metric} ${value}`)
       el.setAttribute("data-ink-sized", "")
     })
+    frames(root)
     root.querySelectorAll<HTMLElement>(selector).forEach((el) => edge(el, m))
     root.querySelectorAll(`[${GLYPH}]`).forEach((el) => stem(el, m))
   }
@@ -364,9 +472,18 @@ export function ink(options: InkOptions = {}): () => void {
     if (moved) soon()
   })
   root.querySelectorAll(selector).forEach((el) => resize.observe(el))
+  // Pages that change (client navigation, new content) are read again; our own
+  // writes are attributes, which this does not watch, so it cannot loop.
+  const changes = new MutationObserver(() => {
+    root.querySelectorAll(selector).forEach((el) => resize.observe(el))
+    soon()
+  })
+  changes.observe(root === document ? document.body : (root as Node), { childList: true, subtree: true, characterData: true })
   return () => {
     cancelAnimationFrame(frame)
     resize.disconnect()
+    changes.disconnect()
+    root.querySelectorAll<HTMLElement>("[data-ink-trim]").forEach((el) => el.removeAttribute("data-ink-trim"))
     document.fonts?.removeEventListener("loadingdone", soon)
     root.querySelectorAll<HTMLElement>(`${selector}, [data-ink-stem], [data-ink-sized]`).forEach((el) => {
       if (el.hasAttribute("data-ink-sized")) {

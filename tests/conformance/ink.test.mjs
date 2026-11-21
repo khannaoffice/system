@@ -40,13 +40,14 @@ const HALF = 0.5 + 1e-6 // half a CSS pixel, the finest a 2x screen can show
 // Each floor adds the measurement's own quarter pixel (half a device pixel).
 const FLOOR = { chromium: 0.75, webkit: 1.25, firefox: 1.25 }
 
-async function page(engine, body, { ink = true } = {}) {
+async function page(engine, body, { ink = true, run = false } = {}) {
   const context = await engine.browser.newContext({ deviceScaleFactor: 2, viewport: { width: 1200, height: 900 } })
   const p = await context.newPage()
   await p.setContent(`<!doctype html><html ${ink ? "data-ink" : ""}><head><style>${css}</style><style>body{margin:0;padding:120px;background:#fff;color:#000} .g{color:#f00}</style></head><body>${body}</body></html>`)
-  await p.addScriptTag({ type: "module", content: script.replace(/^export /gm, "") + "\nwindow.Ink = { ink, edge, stem, inset, place };\ndocument.documentElement.dataset.ready = 1" })
+  await p.addScriptTag({ type: "module", content: script.replace(/^export /gm, "") + "\nwindow.Ink = { ink, edge, stem, inset, place, frames };\ndocument.documentElement.dataset.ready = 1" })
   await p.waitForFunction(() => document.documentElement.dataset.ready)
   await p.evaluate(() => document.fonts.ready)
+  if (ink && run) await p.evaluate(() => window.Ink.ink())
   return { p, close: () => context.close() }
 }
 
@@ -104,7 +105,7 @@ const near = (a, b, msg) => assert.ok(Math.abs(a - b) <= HALF, `${msg}: ${a} vs 
 test("A2-35.1 the ink above the capitals and below the baseline is the padding, in every face and size", { skip }, async (t) => {
   await every(t, async (engine) => {
     const cells = FACES.flatMap((f) => [11, 16, 48].map((size) => ({ f, size })))
-    const { p, close } = await page(engine, cells.map((c, i) => `<div><p id=c${i} style="display:inline-block;margin:0 0 24px;padding:12px 16px;font:${c.size}px/1.5 '${c.f}'">HIEHIEH</p></div>`).join(""))
+    const { p, close } = await page(engine, cells.map((c, i) => `<div><p id=c${i} style="display:inline-block;margin:0 0 24px;padding:12px 16px;font:${c.size}px/1.5 '${c.f}'">HIEHIEH</p></div>`).join(""), { run: true })
     const misses = []
     for (const [i, c] of cells.entries()) {
       const box = await p.locator(`#c${i}`).boundingBox()
@@ -122,14 +123,17 @@ test("A2-35.1 the ink above the capitals and below the baseline is the padding, 
   })
 })
 
-test("A2-35.2 the visible gap between two text blocks is the margin between them", { skip }, async (t) => {
+test("A2-35.2 text with nothing framing it keeps its leading: Ink moves nothing between two blocks of text", { skip }, async (t) => {
   await every(t, async (engine) => {
     for (const f of FACES.slice(0, 5)) {
-      const { p, close } = await page(engine, `<div id=s style="font-family:'${f}'"><h2 style="font-size:32px;line-height:1.2;margin:0 0 16px">HIDE</h2><p style="font-size:16px;line-height:1.5;margin:0">HIE</p></div>`)
-      const ink = await inkOf(p, "#s")
-      assert.equal(ink.bands.length, 2, `${engine.name} ${f}: two lines of ink`)
-      near(ink.bands[1].top - ink.bands[0].bottom, 16, `${engine.name} ${f} gap`)
-      await close()
+      const body = `<div id=s style="font-family:'${f}'"><h2 style="font-size:32px;line-height:1.2;margin:0 0 16px">HIDE</h2><p style="font-size:16px;line-height:1.5;margin:0">HIE</p><p style="font-size:16px;line-height:1.5;margin:0">HIE</p></div>`
+      const on = await page(engine, body, { run: true })
+      const off = await page(engine, body, { ink: false })
+      const a = await inkOf(on.p, "#s"), b = await inkOf(off.p, "#s")
+      assert.equal(a.bands.length, 3, `${engine.name} ${f}: three lines`)
+      // The page's own padding is a frame, so the stack may move as one; between its lines nothing does.
+      for (let i = 1; i < 3; i++) assert.ok(Math.abs((a.bands[i].top - a.bands[0].top) - (b.bands[i].top - b.bands[0].top)) <= FLOOR[engine.name], `${engine.name} ${f} line ${i} kept its distance`)
+      await on.close(); await off.close()
     }
   })
 })
@@ -148,11 +152,11 @@ test("A2-35.3 baselines stand line-height apart, and a change of face inside a l
 test("A2-35.4 with the x-height edge, a block begins at the x-height", { skip }, async (t) => {
   await every(t, async (engine) => {
     for (const f of FACES.slice(0, 4)) {
-      const { p, close } = await page(engine, `<p data-ink=ex id=s style="display:inline-block;padding:10px;font:40px/1.4 '${f}'">xzxzx</p>`)
+      const { p, close } = await page(engine, `<p data-ink=ex id=s style="display:inline-block;padding:10px;font:40px/1.4 '${f}'">xzxzx</p>`, { run: true })
       const box = await p.locator("#s").boundingBox()
       const ink = await inkOf(p, "#s")
-      near(ink.top, 10, `${engine.name} ${f} above the x-height`)
-      near(box.height - ink.bottom, 10, `${engine.name} ${f} below the baseline`)
+      assert.ok(Math.abs(ink.top - 10) <= FLOOR[engine.name], `${engine.name} ${f} above the x-height: ${ink.top}`)
+      assert.ok(Math.abs(box.height - ink.bottom - 10) <= FLOOR[engine.name], `${engine.name} ${f} below the baseline: ${box.height - ink.bottom}`)
       await close()
     }
   })
@@ -181,7 +185,7 @@ test("A2-35.5 a marked glyph stands on the baseline and reaches the capitals, or
 const RED = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="#f00"/></svg>`)
 test("A2-35.6 media leave no gap beneath them and never overlap the text around them", { skip }, async (t) => {
   await every(t, async (engine) => {
-    const { p, close } = await page(engine, `<p id=a style="font:16px/24px Arial;margin:0">ABOVE</p><div id=m style="margin:10px 0"><a href="#"><img src="${RED}" width=40 height=40 alt=""></a></div><p id=b style="font:16px/24px Arial;margin:0">BELOW</p><p id=n style="margin-top:20px"><button style="font:16px Arial;padding:20px">OK</button> TEXT</p>`)
+    const { p, close } = await page(engine, `<p id=a style="font:16px/24px Arial;margin:0">ABOVE</p><div id=m style="margin:10px 0"><a href="#"><img src="${RED}" width=40 height=40 alt=""></a></div><p id=b style="font:16px/24px Arial;margin:0">BELOW</p><p id=n style="margin-top:20px;padding:6px 0"><button style="font:16px Arial;padding:20px">OK</button> TEXT</p><div id=k style="padding:8px 0;font:16px/24px Arial"><span style="display:inline-block;padding:12px;border:1px solid #000">TAG</span> TEXT</div>`, { run: true })
     const m = await p.locator("#m").boundingBox()
     const img = await p.locator("#m img").boundingBox()
     assert.equal(m.height, 40, `${engine.name}: the block is the image's height, no descender gap`)
@@ -191,6 +195,9 @@ test("A2-35.6 media leave no gap beneath them and never overlap the text around 
     const n = await p.locator("#n").boundingBox()
     const b = await p.locator("#n button").boundingBox()
     assert.ok(b.y >= n.y - HALF && b.y + b.height <= n.y + n.height + HALF, `${engine.name}: a control in a line keeps its block around it`)
+    const k = await p.locator("#k").boundingBox()
+    const tag = await p.locator("#k span").boundingBox()
+    assert.ok(tag.y >= k.y + 8 - HALF && tag.y + tag.height <= k.y + k.height - 8 + HALF, `${engine.name}: a framed line that starts with a box keeps the box inside its padding`)
     await close()
   })
 })
@@ -202,7 +209,15 @@ test("A2-35.7 below data-ink-size, every face matches the x-height of the face t
     const base = await inkOf(p, "#f0")
     for (let i = 1; i < 5; i++) {
       const ink = await inkOf(p, `#f${i}`)
-      near(ink.bottom - ink.top, base.bottom - base.top, `${engine.name} face ${i} x-height`)
+      // A named engine exception, checked rather than hidden: WebKit reads Times New Roman's
+      // x-height about 6% lower than its glyphs, and font-size-adjust can only scale by the
+      // engine's own metric. If WebKit fixes it, this fails and the exception comes out.
+      if (engine.name === "webkit" && i === 4) {
+        const ratio = (ink.bottom - ink.top) / (base.bottom - base.top)
+        assert.ok(ratio > 0.9 && ratio < 0.97, `webkit Times New Roman: the known shortfall, ratio ${ratio.toFixed(3)}`)
+        continue
+      }
+      assert.ok(Math.abs((ink.bottom - ink.top) - (base.bottom - base.top)) <= FLOOR[engine.name], `${engine.name} face ${i} x-height: ${ink.bottom - ink.top} vs ${base.bottom - base.top}`)
     }
     await close()
   })
@@ -256,11 +271,11 @@ test("A2-35.10 the edge is set without changing the document, and stopping puts 
 
 test("A2-35.11 Ink weighs nothing: a site's own rule always wins, and opting out restores the box", { skip }, async (t) => {
   await every(t, async (engine) => {
-    const { p, close } = await page(engine, `<style>p.own{text-box:none}</style><p class=own id=a style="font:16px/24px Arial">HHH</p><p id=b style="font:16px/24px Arial">HHH</p><div data-ink=off><p id=c style="font:16px/24px Arial">HHH</p></div>`)
+    const { p, close } = await page(engine, `<style>p.own{text-box:none} p{padding:10px 0;margin:0}</style><p class=own id=a style="font:16px/24px Arial">HHH</p><p id=b style="font:16px/24px Arial">HHH</p><div data-ink=off><p id=c style="font:16px/24px Arial">HHH</p></div>`, { run: true })
     const h = (id) => p.locator("#" + id).boundingBox().then((b) => b.height)
-    near(await h("a"), 24, `${engine.name}: the site's rule wins`)
-    assert.ok((await h("b")) < 13, `${engine.name}: trimmed`)
-    near(await h("c"), 24, `${engine.name}: opted out`)
+    near(await h("a"), 44, `${engine.name}: the site's rule wins`)
+    assert.ok((await h("b")) < 33, `${engine.name}: trimmed`)
+    near(await h("c"), 44, `${engine.name}: opted out`)
     await close()
   })
 })
@@ -284,15 +299,28 @@ test("A2-35.12 lighter than the web it replaces: no node for the vertical, and e
   })
 })
 
-test("A2-35.13 a list keeps its leading between items, and only its outer edges are trimmed", { skip }, async (t) => {
+test("A2-35.13 a framed list keeps its leading between items, and only its first capitals and last baseline meet the frame", { skip }, async (t) => {
   await every(t, async (engine) => {
     const items = ["HIEH", "HIE", "HIEHI", "HI", "HIEHIE"]
-    const { p, close } = await page(engine, `<style>#l a{color:#000;text-decoration:none}</style><ul id=l style="list-style:none;padding:0;margin:0;font:16px/24px 'Helvetica Neue',Arial">${items.map((x) => `<li><a href="#">${x}</a></li>`).join("")}</ul>`)
+    const { p, close } = await page(engine, `<style>#l a{color:#000;text-decoration:none}</style><ul id=l style="list-style:none;padding:10px 0;margin:0;font:16px/24px 'Helvetica Neue',Arial">${items.map((x) => `<li><a href="#">${x}</a></li>`).join("")}</ul>`, { run: true })
     const ink = await inkOf(p, "#l", "dark", 4)
     assert.equal(ink.bands.length, items.length, `${engine.name}: every item is its own line, none overlapping`)
     for (let i = 1; i < items.length; i++) assert.ok(Math.abs(ink.bands[i].bottom - ink.bands[i - 1].bottom - 24) <= FLOOR[engine.name], `${engine.name}: item ${i} stands one line below the last`)
     const box = await p.locator("#l").boundingBox()
-    assert.ok(Math.abs(ink.bands[0].top) <= FLOOR[engine.name] && Math.abs(box.height - ink.bands[items.length - 1].bottom) <= FLOOR[engine.name], `${engine.name}: the list's edges are its first capitals and last baseline`)
+    assert.ok(Math.abs(ink.bands[0].top - 10) <= FLOOR[engine.name] && Math.abs(box.height - ink.bands[items.length - 1].bottom - 10) <= FLOOR[engine.name], `${engine.name}: the frame's padding meets the first capitals and the last baseline`)
     await close()
+  })
+})
+
+test("A2-35.14 trimming follows the layout, not the tags: text side by side on a framed row shares one cap line", { skip }, async (t) => {
+  await every(t, async (engine) => {
+    for (const f of FACES.slice(0, 4)) {
+      const { p, close } = await page(engine, `<style>#row b{font-weight:400} #row button{all:unset;display:block}</style><div id=row style="display:grid;grid-template-columns:repeat(4,1fr);padding:10px 0;border-top:1px solid #000;font:20px/30px '${f}'"><span style="display:block" id=a>HIE</span><button id=b>HIE</button><p style="margin:0" id=c>HIE</p><div id=d><b>HIE</b></div></div>`, { run: true })
+      const row = await p.locator("#row").boundingBox()
+      const tops = []
+      for (const id of ["a", "b", "c", "d"]) { const ink = await inkOf(p, "#" + id, "dark", 4); const box = await p.locator("#" + id).boundingBox(); tops.push(box.y + ink.top - row.y) }
+      for (const top of tops) assert.ok(Math.abs(top - 11) <= FLOOR[engine.name], `${engine.name} ${f}: caps at ${tops.map((x) => x.toFixed(2)).join(", ")}, frame edge at 11`)
+      await close()
+    }
   })
 })

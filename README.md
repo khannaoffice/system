@@ -181,7 +181,7 @@ The stylesheet holds the moves. Tune them with `--whereabouts-step`, `--whereabo
 
 ### Ink
 
-Ink places type by what it draws, not by the box it came in. Since the first stylesheets, every line of text on the web has carried the font's room for accents above its capitals and for descenders below its baseline, plus half its leading on each side, and every padding, margin and alignment has been measured from that invisible box. Ask for 12 pixels of padding and the reader sees 17 to 19. Ink takes the box away.
+Ink places type by what it draws, not by the box it came in. Since the first stylesheets, every line of text on the web has carried the font's room for accents above its capitals and for descenders below its baseline, plus half its leading on each side, and every padding, border and alignment has been measured from that invisible box. Ask a button for 12 pixels of padding and the reader sees 17 to 19. Ink takes the box away where text meets something that is not text, and leaves the leading between lines of text, which is rhythm, alone. Nothing you have tuned moves.
 
 ```html
 <html data-ink>
@@ -194,17 +194,17 @@ import { ink } from "@khannaoffice/system/web/ink"
 const stop = ink()
 ```
 
-- **Padding is padding.** A text block's box runs from its first line's capitals to its last line's baseline, so the space you set is the space a reader sees, and equal padding centres the capitals.
-- **Gaps are gaps.** The margin between two blocks is the gap between their ink, and line height is the distance from one baseline to the next.
+- **Padding is padding.** Where text meets a frame, its own padding or border, the padding you set is the space between the frame and the ink, and equal padding centres the capitals. Text side by side on a framed row shares one cap line, whatever elements hold it.
+- **Leading is left alone.** Between lines and blocks of text nothing moves, so baselines stay on whatever rhythm you set.
 - **Any face, any metric.** `data-ink="ex"` trims to the x-height for lowercase settings. `data-ink-size="ex"` (or `"cap"`) makes every face below match the x-height of the face set there, fallbacks and code included, so one size means one size.
 - **Glyphs are type.** An icon marked `data-ink-glyph` stands on the baseline and reaches the capitals of whatever face it sits in. With the script, a stroked icon draws at that face's own stem, at that weight.
 - **The left edge is the ink.** An H starts 7.4 pixels inside its box at 96 pixels, a T none, an A overhangs. The script sets every line of a heading on its ink, and hangs an opening quote so the letter after it aligns. It reads each face from the canvas, so it needs no font files and works with any font the page has loaded.
 
-The stylesheet needs no script and adds no element. Every rule is wrapped in `:where()`, so any rule of your own wins, and `data-ink="off"` restores the box for an element and its contents. It trims p, h1 to h6, blockquote, figcaption, caption, th, td, label, legend, summary, button, pre and address, and lists as a whole, so their items keep their leading; mark any other element that holds text directly with `data-ink-box`. Containers are left alone, so a child's own rule is never overruled and a line holding a button is never cut.
+The trim follows the layout, not the tags: `ink()` reads which edges are frames and marks them, so text in a span, a button or a paragraph is treated alike, and a frame whose edge line holds an image or a control keeps its box. The stylesheet adds no element. Every rule is wrapped in `:where()`, so any rule of your own wins, and `data-ink="off"` restores the box for an element and its contents. `data-ink-box` trims an element outright, for new work that wants every gap to be a margin. Glyphs, media and the size rule work from the stylesheet alone.
 
-The script never adds or splits a node, so it is safe under React and hydration. It moves a heading with `translate`, its first line with `text-indent`, and each later line with a zero-width float whose `shape-outside` gives that line its own inset. It measures each face and letter once, and runs again only when fonts load or a heading's width changes. `ink()` takes `selector` (headings and blockquotes inside `[data-ink]`, and anything marked `data-ink-edge`) and `root`, and returns a function that stops and puts every attribute back as it was. `data-ink-edge="first"` keeps an element to its first line.
+The script never adds or splits a node, so it is safe under React and hydration, and it reads the page again when its content changes. It moves a heading with `translate`, its first line with `text-indent`, and each later line with a zero-width float whose `shape-outside` gives that line its own inset. It measures each face and letter once, and runs again only when fonts load or a heading's width changes. `ink()` takes `selector` (headings and blockquotes inside `[data-ink]`, and anything marked `data-ink-edge`) and `root`, and returns a function that stops and puts every attribute back as it was. `data-ink-edge="first"` keeps an element to its first line.
 
-Two things to know. The CSS `font` shorthand resets `font-size-adjust`, so below `data-ink-size` set faces with `font-family` and `font-size`. And trimmed text that sits in a box which clips its overflow with no padding loses its descenders, as it would anywhere its ink leaves its box.
+Three things to know. The CSS `font` shorthand resets `font-size-adjust`, so below `data-ink-size` set faces with `font-family` and `font-size`. Text standing bare in a flex container, an `inline-flex` button whose label is not wrapped, sits in an anonymous box CSS cannot trim. And WebKit reads Times New Roman's x-height about 6% low, so it comes out that much small under `data-ink-size`.
 
 Ink needs `text-box`, in Chrome 133, Safari 18.2 and Firefox 154. Older browsers show the web as it was. The amendment, [`spec/amendments/0002-ink.md`](spec/amendments/0002-ink.md), has the measurements, the engine floors and the mutation record.
 
@@ -220,7 +220,7 @@ npm run build
 npm run registry
 ```
 
-`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the web part, the schemas and the scan for network code. Of its 298 tests, 264 run on their own and 34 wait for a site. Ink's 12 measure in whichever browser engines launch. Read the result from the exit code.
+`npm test` is the gate: the specification's own accounting, the core, state, the adapters, the web part, the schemas and the scan for network code. Of its 300 tests, 266 run on their own and 34 wait for a site. Ink's 14 measure in whichever browser engines launch. Read the result from the exit code.
 
 `npm run registry` rebuilds the requirement registry after a change to section 24 of the specification or to an amendment. A requirement is marked passing only when a test file that names it exists.
 
