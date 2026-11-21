@@ -128,31 +128,40 @@ function canvasMeasure(): CanvasMeasure {
     if (ctx.font !== font) ctx.font = font
   }
   const SIZE = 200
+  const EDGE_SIZE = 200
   shared = {
     left(font, text) {
       // Read from pixels, not from measureText's actualBoundingBoxLeft: WebKit
-      // reports 0 and Gecko is a pixel out. One render per face and letter, at
-      // 200px, refined by the coverage of the first inked column.
-      const face = font.replace(/\s[\d.]+px\s/, ` ${SIZE}px `)
-      const size = parseFloat(font.match(/\s([\d.]+)px\s/)?.[1] ?? `${SIZE}`)
+      // reports 0 and Gecko is a pixel out. One small render per face and
+      // letter, at 200px, of only the region round the pen, refined by the
+      // coverage of the first inked column (about a hundredth of a pixel).
+      const face = font.replace(/\s[\d.]+px\s/, ` ${EDGE_SIZE}px `)
+      const size = parseFloat(font.match(/\s([\d.]+)px\s/)?.[1] ?? `${EDGE_SIZE}`)
       const key = face + "\u0000" + text
       if (!lefts.has(key)) {
-        const W = SIZE * 3
-        const H = SIZE * 2
-        const x0 = SIZE
-        canvas.width = W
-        canvas.height = H
-        ctx.font = face
-        ctx.textBaseline = "alphabetic"
-        ctx.fillText(text, x0, SIZE * 1.4)
-        const d = ctx.getImageData(0, 0, W, H).data
-        let edge = NaN
-        for (let x = 0; x < W && isNaN(edge); x++) {
-          let alpha = 0
-          for (let y = 0; y < H; y++) alpha = Math.max(alpha, d[(y * W + x) * 4 + 3])
-          if (alpha > 0) edge = x + 1 - alpha / 255
+        const scan = (reach: number) => {
+          const x0 = EDGE_SIZE / 2
+          const W = Math.ceil(x0 + reach * EDGE_SIZE)
+          const H = Math.ceil(EDGE_SIZE * 1.6)
+          if (canvas.width !== W || canvas.height !== H) {
+            canvas.width = W
+            canvas.height = H
+          } else ctx.clearRect(0, 0, W, H)
+          ctx.font = face
+          ctx.textBaseline = "alphabetic"
+          ctx.fillText(text, x0, EDGE_SIZE * 1.15)
+          const d = ctx.getImageData(0, 0, W, H).data
+          for (let x = 0; x < W; x++) {
+            let alpha = 0
+            for (let y = 0; y < H; y++) alpha = Math.max(alpha, d[(y * W + x) * 4 + 3])
+            if (alpha > 0) return (x0 - (x + 1 - alpha / 255)) / EDGE_SIZE
+          }
+          return NaN
         }
-        lefts.set(key, isNaN(edge) ? 0 : (x0 - edge) / SIZE)
+        // Most letters ink within 0.7em of the pen; a rare wide bearing looks further.
+        let found = scan(0.7)
+        if (isNaN(found)) found = scan(2)
+        lefts.set(key, isNaN(found) ? 0 : found)
       }
       return lefts.get(key)! * size
     },

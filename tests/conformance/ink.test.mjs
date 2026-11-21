@@ -23,7 +23,8 @@ before(async () => {
   if (!pw) return
   for (const name of wanted) {
     try {
-      engines.push({ name, browser: await pw[name].launch(name === "chromium" ? { channel: "chrome" } : {}) })
+      const launch = () => pw[name].launch(name === "chromium" ? { channel: "chrome" } : {})
+      engines.push({ name, launch, browser: await launch() })
     } catch {}
   }
 })
@@ -41,7 +42,15 @@ const HALF = 0.5 + 1e-6 // half a CSS pixel, the finest a 2x screen can show
 const FLOOR = { chromium: 0.75, webkit: 1.25, firefox: 1.25 }
 
 async function page(engine, body, { ink = true, run = false } = {}) {
-  const context = await engine.browser.newContext({ deviceScaleFactor: 2, viewport: { width: 1200, height: 900 } })
+  // A shared machine can close a browser from outside; relaunch it once rather than report Ink for it.
+  let context
+  try {
+    if (!engine.browser.isConnected()) engine.browser = await engine.launch()
+    context = await engine.browser.newContext({ deviceScaleFactor: 2, viewport: { width: 1200, height: 900 } })
+  } catch {
+    engine.browser = await engine.launch()
+    context = await engine.browser.newContext({ deviceScaleFactor: 2, viewport: { width: 1200, height: 900 } })
+  }
   const p = await context.newPage()
   await p.setContent(`<!doctype html><html ${ink ? "data-ink" : ""}><head><style>${css}</style><style>body{margin:0;padding:120px;background:#fff;color:#000} .g{color:#f00}</style></head><body>${body}</body></html>`)
   await p.addScriptTag({ type: "module", content: script.replace(/^export /gm, "") + "\nwindow.Ink = { ink, edge, edges, stem, inset, place, frames, framer };\ndocument.documentElement.dataset.ready = 1" })
